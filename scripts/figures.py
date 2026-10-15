@@ -255,12 +255,12 @@ fig.savefig(FIG + "07_grid_plane.png", dpi=160)
 print("ok5")
 
 # 10. final cells: position against the groups, coloured by the worst control shift (chain of thought)
-v = {}
-for f in glob.glob("results/judge_final/*.json"):
-    v.update(json.load(open(f)))
-df = pd.concat(pd.read_json(f, lines=True) for f in glob.glob("results/final/*.jsonl") + glob.glob("results/final_ctrl/*.jsonl"))
+from moral_axes import data as _data
+FINAL_RUNS = [("results/final/shard[1-9]*.jsonl", "results/judge_final"),
+              ("results/final/shard0.jsonl", "results/judge_rejudge_final"),
+              ("results/final_ctrl/*.jsonl", "results/judge_rejudge_final")]
+df = pd.concat(_data.judged(f, j) for f, j in FINAL_RUNS)
 df = df[~df.instruction.isin(DROP)]
-df["r"] = df.uid.map(v)
 m = df[df.r > 0].groupby(["cell", "type"]).r.mean().unstack()
 base = m.loc["base"]
 m["ctrl"] = (m[["neutral", "harm_no_benefit", "kindness"]] - base[["neutral", "harm_no_benefit", "kindness"]]).abs().max(1)
@@ -283,12 +283,8 @@ fig.savefig(FIG + "08_final_cells.png", dpi=160)
 print("ok6")
 
 # 11. paper figure: model positions with standard errors against the human groups
-v = {}
-for f in glob.glob("results/judge_final/*.json"):
-    v.update(json.load(open(f)))
-df = pd.concat(pd.read_json(f, lines=True) for f in glob.glob("results/final/*.jsonl"))
+df = pd.concat(_data.judged(f, j) for f, j in FINAL_RUNS[:2])
 df = df[~df.instruction.isin(DROP)]
-df["r"] = df.uid.map(v)
 df = df[df.r > 0]
 per = df.groupby(["cell", "type", "id"]).r.mean().reset_index()
 stats = per.groupby(["cell", "type"]).r.agg(["mean", "sem", "std"]).unstack("type")
