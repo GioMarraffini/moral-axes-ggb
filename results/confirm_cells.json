@@ -1,0 +1,1 @@
+[{"kind": "steer", "axis": "IB", "mode": "add", "layer": 23, "s": 2}, {"kind": "steer", "axis": "IB", "mode": "pin", "layer": 23, "s": 2}, {"kind": "steer", "axis": "IB", "mode": "pin", "layer": 23, "s": -4}, {"kind": "steer", "axis": "IH", "mode": "pin", "layer": 17, "s": 8}, {"kind": "steer", "axis": "agree", "mode": "add", "layer": 23, "s": 1}]

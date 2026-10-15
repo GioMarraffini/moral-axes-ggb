@@ -1,0 +1,13 @@
+.claude/
+__pycache__/
+plans/
+world_knowledge/code/
+world_knowledge/papers/
+# raw answers and activations stay out of git (hundreds of MB); verdicts, directions and tables are kept
+results/*
+!results/judge_*/
+!results/*.csv
+!results/*_cells.json
+!results/directions*/
+results/directions*/acts_*.npz
+results/directions*/merged.npz

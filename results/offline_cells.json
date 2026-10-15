@@ -1,0 +1,86 @@
+[
+{
+"kind": "steer",
+"axis": "IHacc",
+"mode": "add",
+"layer": 23,
+"s": 2
+},
+{
+"kind": "steer",
+"axis": "IHacc",
+"mode": "add",
+"layer": 23,
+"s": 4
+},
+{
+"kind": "steer",
+"axis": "IHacc",
+"mode": "add",
+"layer": 23,
+"s": 8
+},
+{
+"kind": "steer",
+"axis": "IBacc",
+"mode": "add",
+"layer": 23,
+"s": 2
+},
+{
+"kind": "steer",
+"axis": "IBacc",
+"mode": "add",
+"layer": 23,
+"s": 4
+},
+{
+"kind": "steer",
+"axis": "both",
+"mode": "add",
+"layer": 23,
+"s": 2
+},
+{
+"kind": "steer",
+"axis": "both",
+"mode": "add",
+"layer": 23,
+"s": 4
+},
+{
+"kind": "steer",
+"axis": "both",
+"mode": "add",
+"layer": 23,
+"s": 8
+},
+{
+"kind": "steer",
+"axis": "IB_notIH",
+"mode": "add",
+"layer": 23,
+"s": -4
+},
+{
+"kind": "steer",
+"axis": "IB_notIH",
+"mode": "add",
+"layer": 23,
+"s": 4
+},
+{
+"kind": "steer",
+"axis": "IB_notIH",
+"mode": "add",
+"layer": 23,
+"s": 8
+},
+{
+"kind": "steer",
+"axis": "IB_notIH",
+"mode": "add",
+"layer": 23,
+"s": 12
+}
+]

@@ -1,0 +1,301 @@
+[
+{
+"kind": "base"
+},
+{
+"kind": "steer2",
+"terms": [
+{
+"axis": "IBacc",
+"layer": 23,
+"s": -4
+},
+{
+"axis": "IHacc",
+"layer": 23,
+"s": -4
+}
+]
+},
+{
+"kind": "steer2",
+"terms": [
+{
+"axis": "IBacc",
+"layer": 23,
+"s": -4
+},
+{
+"axis": "IHacc",
+"layer": 23,
+"s": -2
+}
+]
+},
+{
+"kind": "steer",
+"axis": "IBacc",
+"mode": "add",
+"layer": 23,
+"s": -4
+},
+{
+"kind": "steer2",
+"terms": [
+{
+"axis": "IBacc",
+"layer": 23,
+"s": -4
+},
+{
+"axis": "IHacc",
+"layer": 23,
+"s": 2
+}
+]
+},
+{
+"kind": "steer2",
+"terms": [
+{
+"axis": "IBacc",
+"layer": 23,
+"s": -4
+},
+{
+"axis": "IHacc",
+"layer": 23,
+"s": 4
+}
+]
+},
+{
+"kind": "steer2",
+"terms": [
+{
+"axis": "IBacc",
+"layer": 23,
+"s": -2
+},
+{
+"axis": "IHacc",
+"layer": 23,
+"s": -4
+}
+]
+},
+{
+"kind": "steer2",
+"terms": [
+{
+"axis": "IBacc",
+"layer": 23,
+"s": -2
+},
+{
+"axis": "IHacc",
+"layer": 23,
+"s": -2
+}
+]
+},
+{
+"kind": "steer",
+"axis": "IBacc",
+"mode": "add",
+"layer": 23,
+"s": -2
+},
+{
+"kind": "steer2",
+"terms": [
+{
+"axis": "IBacc",
+"layer": 23,
+"s": -2
+},
+{
+"axis": "IHacc",
+"layer": 23,
+"s": 2
+}
+]
+},
+{
+"kind": "steer2",
+"terms": [
+{
+"axis": "IBacc",
+"layer": 23,
+"s": -2
+},
+{
+"axis": "IHacc",
+"layer": 23,
+"s": 4
+}
+]
+},
+{
+"kind": "steer",
+"axis": "IHacc",
+"mode": "add",
+"layer": 23,
+"s": -4
+},
+{
+"kind": "steer",
+"axis": "IHacc",
+"mode": "add",
+"layer": 23,
+"s": -2
+},
+{
+"kind": "steer",
+"axis": "IHacc",
+"mode": "add",
+"layer": 23,
+"s": 2
+},
+{
+"kind": "steer",
+"axis": "IHacc",
+"mode": "add",
+"layer": 23,
+"s": 4
+},
+{
+"kind": "steer2",
+"terms": [
+{
+"axis": "IBacc",
+"layer": 23,
+"s": 2
+},
+{
+"axis": "IHacc",
+"layer": 23,
+"s": -4
+}
+]
+},
+{
+"kind": "steer2",
+"terms": [
+{
+"axis": "IBacc",
+"layer": 23,
+"s": 2
+},
+{
+"axis": "IHacc",
+"layer": 23,
+"s": -2
+}
+]
+},
+{
+"kind": "steer",
+"axis": "IBacc",
+"mode": "add",
+"layer": 23,
+"s": 2
+},
+{
+"kind": "steer2",
+"terms": [
+{
+"axis": "IBacc",
+"layer": 23,
+"s": 2
+},
+{
+"axis": "IHacc",
+"layer": 23,
+"s": 2
+}
+]
+},
+{
+"kind": "steer2",
+"terms": [
+{
+"axis": "IBacc",
+"layer": 23,
+"s": 2
+},
+{
+"axis": "IHacc",
+"layer": 23,
+"s": 4
+}
+]
+},
+{
+"kind": "steer2",
+"terms": [
+{
+"axis": "IBacc",
+"layer": 23,
+"s": 4
+},
+{
+"axis": "IHacc",
+"layer": 23,
+"s": -4
+}
+]
+},
+{
+"kind": "steer2",
+"terms": [
+{
+"axis": "IBacc",
+"layer": 23,
+"s": 4
+},
+{
+"axis": "IHacc",
+"layer": 23,
+"s": -2
+}
+]
+},
+{
+"kind": "steer",
+"axis": "IBacc",
+"mode": "add",
+"layer": 23,
+"s": 4
+},
+{
+"kind": "steer2",
+"terms": [
+{
+"axis": "IBacc",
+"layer": 23,
+"s": 4
+},
+{
+"axis": "IHacc",
+"layer": 23,
+"s": 2
+}
+]
+},
+{
+"kind": "steer2",
+"terms": [
+{
+"axis": "IBacc",
+"layer": 23,
+"s": 4
+},
+{
+"axis": "IHacc",
+"layer": 23,
+"s": 4
+}
+]
+}
+]

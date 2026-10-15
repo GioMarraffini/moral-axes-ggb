@@ -1,0 +1,54 @@
+{
+ "_source": "Figure 1 of Marraffini et al. 2024, digitised from Kahane et al. 2018 Figure 7 (pixel offsets over 198 px per scale point). The spread value is the plotted error bar read in the same units; it is treated as a standard error, the stricter reading: the test multiplies it by sqrt(N) to get the standard deviation. Lay population from Kahane et al. 2018 study 1, where 1.20 and 1.22 are standard deviations (spread_is on that entry).",
+ "act_utilitarianism": {
+  "IB": 5.652,
+  "IB_sd": 0.333,
+  "IH": 6.051,
+  "IH_sd": 0.389,
+  "N": 11
+ },
+ "rule_utilitarianism": {
+  "IB": 4.813,
+  "IB_sd": 0.717,
+  "IH": 4.864,
+  "IH_sd": 0.747,
+  "N": 19
+ },
+ "non_utilitarian_consequentialism": {
+  "IB": 4.434,
+  "IB_sd": 0.283,
+  "IH": 4.399,
+  "IH_sd": 0.333,
+  "N": 36
+ },
+ "virtue_ethics": {
+  "IB": 3.525,
+  "IB_sd": 0.197,
+  "IH": 3.48,
+  "IH_sd": 0.379,
+  "N": 19
+ },
+ "other_forms_of_deontology": {
+  "IB": 3.333,
+  "IB_sd": 0.152,
+  "IH": 3.328,
+  "IH_sd": 0.217,
+  "N": 18
+ },
+ "kantian_ethics": {
+  "IB": 2.859,
+  "IB_sd": 0.631,
+  "IH": 1.939,
+  "IH_sd": 0.318,
+  "N": 22
+ },
+ "lay_population": {
+  "IB": 3.65,
+  "IB_sd": 1.2,
+  "IH": 3.31,
+  "IH_sd": 1.22,
+  "N": 300,
+  "spread_is": "standard_deviation"
+ },
+ "_spread_is": "standard_error"
+}

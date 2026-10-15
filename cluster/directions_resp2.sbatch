@@ -1,0 +1,37 @@
+#!/bin/bash
+#SBATCH -J ggb_dirresp2
+#SBATCH -p gpu-best
+#SBATCH --gres=gpu:1
+#SBATCH --exclude=margpu020,margpu021,margpu024,margpu025,margpu026,margpu027,margpu028,margpu029
+#SBATCH -c 8
+#SBATCH --mem=32G
+#SBATCH -t 03:00:00
+#SBATCH -o /data/parietal/store3/work/gmarraff/moral-axes-ggb/logs/%x_%A_%a.out
+#SBATCH -e /data/parietal/store3/work/gmarraff/moral-axes-ggb/logs/%x_%A_%a.err
+set -euo pipefail
+S=/data/parietal/store3/work/gmarraff/repos/moral-axes-ggb
+W=/data/parietal/store3/work/gmarraff/moral-axes-ggb
+V=/data/parietal/store3/work/gmarraff/repos/manifold-persona/.venv_pascal
+export OMP_NUM_THREADS=${SLURM_CPUS_PER_TASK:-8}
+export HF_HOME=/data/parietal/store3/work/gmarraff/hf_cache HF_HUB_OFFLINE=1
+export TOKENIZERS_PARALLELISM=false PYTHONPATH=$S
+cd $S
+$V/bin/python - <<'PRE'
+import sys, torch
+if not torch.cuda.is_available():
+    sys.exit("no CUDA device visible despite a --gres allocation")
+p = torch.cuda.get_device_properties(0)
+print("gpu", p.name, f"sm_{p.major}{p.minor}", f"{p.total_memory/2**30:.0f}GB")
+if p.total_memory < 10 * 2**30:
+    sys.exit("GPU has under 10 GB")
+# kernels built for sm_60 run on sm_61
+if not any(a.startswith(f"sm_{p.major}") and int(a[-1]) <= p.minor for a in torch.cuda.get_arch_list()):
+    sys.exit(f"no kernels for sm_{p.major}{p.minor} in {torch.cuda.get_arch_list()}")
+PRE
+$V/bin/python scripts/directions_resp.py --responses "$W/prompt_check3/*.jsonl" "$W/genrej/*.jsonl" --judge $S/results/judge_all $S/results/judge_genrej --cells "base,pin|IB|L23|-4" --out $W/directions_resp2
+$V/bin/python - <<'MERGE'
+import numpy as np
+W="/data/parietal/store3/work/gmarraff/moral-axes-ggb"
+Z=dict(np.load(W+"/directions2/directions.npz")); Z.update(dict(np.load(W+"/directions_resp2/directions.npz")))
+np.savez(W+"/directions_resp2/merged.npz", **Z)
+MERGE

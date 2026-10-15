@@ -1,0 +1,214 @@
+[
+{
+"kind": "steer",
+"axis": "IH_orth",
+"mode": "add",
+"layer": 23,
+"s": -8
+},
+{
+"kind": "steer",
+"axis": "IH_orth",
+"mode": "add",
+"layer": 23,
+"s": -4
+},
+{
+"kind": "steer",
+"axis": "IH_orth",
+"mode": "add",
+"layer": 23,
+"s": 4
+},
+{
+"kind": "steer",
+"axis": "IH_orth",
+"mode": "add",
+"layer": 23,
+"s": 8
+},
+{
+"kind": "steer",
+"axis": "IB_orth",
+"mode": "add",
+"layer": 23,
+"s": -4
+},
+{
+"kind": "steer",
+"axis": "IB_orth",
+"mode": "add",
+"layer": 23,
+"s": -2
+},
+{
+"kind": "steer",
+"axis": "IB_orth",
+"mode": "add",
+"layer": 23,
+"s": 2
+},
+{
+"kind": "steer",
+"axis": "IB_orth",
+"mode": "add",
+"layer": 23,
+"s": 4
+},
+{
+"kind": "steer",
+"axis": "IB",
+"mode": "add",
+"layer": 23,
+"s": -8
+},
+{
+"kind": "steer",
+"axis": "IB",
+"mode": "add",
+"layer": 23,
+"s": -2
+},
+{
+"kind": "steer",
+"axis": "IB",
+"mode": "add",
+"layer": 23,
+"s": 4
+},
+{
+"kind": "steer2",
+"terms": [
+{
+"axis": "IB_orth",
+"layer": 23,
+"s": -2
+},
+{
+"axis": "IH_orth",
+"layer": 23,
+"s": -4
+}
+]
+},
+{
+"kind": "steer2",
+"terms": [
+{
+"axis": "IB_orth",
+"layer": 23,
+"s": -2
+},
+{
+"axis": "IH_orth",
+"layer": 23,
+"s": 4
+}
+]
+},
+{
+"kind": "steer2",
+"terms": [
+{
+"axis": "IB_orth",
+"layer": 23,
+"s": -2
+},
+{
+"axis": "IH_orth",
+"layer": 23,
+"s": 8
+}
+]
+},
+{
+"kind": "steer2",
+"terms": [
+{
+"axis": "IB_orth",
+"layer": 23,
+"s": 2
+},
+{
+"axis": "IH_orth",
+"layer": 23,
+"s": -4
+}
+]
+},
+{
+"kind": "steer2",
+"terms": [
+{
+"axis": "IB_orth",
+"layer": 23,
+"s": 2
+},
+{
+"axis": "IH_orth",
+"layer": 23,
+"s": 4
+}
+]
+},
+{
+"kind": "steer2",
+"terms": [
+{
+"axis": "IB_orth",
+"layer": 23,
+"s": 2
+},
+{
+"axis": "IH_orth",
+"layer": 23,
+"s": 8
+}
+]
+},
+{
+"kind": "steer2",
+"terms": [
+{
+"axis": "IB_orth",
+"layer": 23,
+"s": 4
+},
+{
+"axis": "IH_orth",
+"layer": 23,
+"s": -4
+}
+]
+},
+{
+"kind": "steer2",
+"terms": [
+{
+"axis": "IB_orth",
+"layer": 23,
+"s": 4
+},
+{
+"axis": "IH_orth",
+"layer": 23,
+"s": 4
+}
+]
+},
+{
+"kind": "steer2",
+"terms": [
+{
+"axis": "IB_orth",
+"layer": 23,
+"s": 4
+},
+{
+"axis": "IH_orth",
+"layer": 23,
+"s": 8
+}
+]
+}
+]
