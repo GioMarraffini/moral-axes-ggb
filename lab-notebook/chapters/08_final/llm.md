@@ -34,7 +34,12 @@ a <= −8: neutral 2.8 to 4.1, kindness 3.7 to 4.9.
 (`generate.py --types neutral,harm_no_benefit,kindness --iterations 3 --bs 64 --dtype
 bf16`, 9,960 answers, `results/final_ctrl/shard0.jsonl`; the H100 venv is
 `/root/mp/.venv`, HF cache `/scratch/hf_cache`). Judge: H100, 359 chunks, 11 s per chunk,
-`results/judge_final/`; 5 answers coded 0.
+`results/judge_final/`; 5 answers coded 0. The control file and the first moral shard
+had colliding uids (`cell|shard|index` without the statement type), so both were
+re-judged with unique uids (`results/final_ctrl/shard0_fixed.jsonl`,
+`results/judge_rejudge_final/`); every analysis pairs each run with its own verdict
+folder (`moral_axes/data.py:judged`, `scripts/targets.py --run FILES JUDGE`,
+`scripts/final_table.py`). `generate.py` now writes `cell|types|shard|index`.
 
 `scripts/targets.py 'results/final/*.jsonl' --judge results/judge_final --csv
 results/targets_final.csv` (strict spreads for the philosopher groups, SD for the lay
@@ -44,15 +49,21 @@ d 0.337, p 0.022 / 0.001). Closest otherwise: Kantian (−10, 4) d 0.20 p 0.24; 
 (−6, 6) d 0.35 p 0.23; rule (0, 8) d 0.28 p 0.38; virtue (−8, 4) d 0.42; deontology (−8, 4)
 d 0.46; act (4, 4) d 0.97.
 
-Chain-of-thought means (IB / IH / neutral / harm / kindness): base 5.20 / 2.88 / 4.22 /
-1.58 / 6.30; (−10, 3) 2.53 / 1.87 / 2.68 / 1.57 / 4.08; (−10, 4) 2.81 / 2.14 / 2.69 / 1.85 /
-4.15; (−9, 4) 3.32 / 2.71 / 3.13 / 2.11 / 4.60; (−8, 4) 3.75 / 3.13 / 3.70 / 2.34 / 4.92;
-(−8, 5) 3.96 / 3.44 / 3.84 / 2.78 / 4.95; (−6, 6) 4.68 / 4.16 / 4.38 / 3.23 / 5.21; (−5, 5)
-4.70 / 4.09 / 4.40 / 3.14 / 5.14; (0, 5) 5.14 / 4.67 / 4.82 / 3.72 / 5.37; (0, 8) 5.09 /
-4.81 / 4.93 / 4.26 / 5.28; (4, 4) 5.50 / 5.09 / 5.22 / 4.05 / 5.68; (4, 6) 5.30 / 5.00 /
-5.08 / 4.40 / 5.42; (8, 8) 5.13 / 4.97 / 4.97 / 4.83 / 5.23.
+Chain-of-thought means (IB / IH / neutral / harm / kindness), corrected: base 5.22 / 2.84 /
+4.53 / 1.55 / 6.31; (−10, 3) 2.52 / 1.85 / 2.95 / 1.54 / 4.08; (−10, 4) 2.80 / 2.11 / 2.99 /
+1.81 / 4.15; (−9, 4) 3.32 / 2.69 / 3.70 / 2.08 / 4.60; (−8, 4) 3.75 / 3.10 / 3.92 / 2.25 /
+4.92; (−8, 5) 3.96 / 3.42 / 4.10 / 2.75 / 4.95; (−6, 6) 4.70 / 4.14 / 4.38 / 3.22 / 5.20;
+(−5, 5) 4.71 / 4.08 / 4.38 / 3.10 / 5.14; (0, 5) 5.16 / 4.66 / 4.78 / 3.66 / 5.37; (0, 8)
+5.10 / 4.80 / 4.87 / 4.24 / 5.28; (4, 4) 5.52 / 5.09 / 5.08 / 3.98 / 5.68; (4, 6) 5.31 /
+5.01 / 5.02 / 4.38 / 5.42; (8, 8) 5.13 / 4.97 / 4.92 / 4.81 / 5.23.
 
-Within-statement variance (IB / IH): base 1.04 / 1.83; steered cells 0.31 to 1.49 / 0.28 to
-1.09 (lowest at (4, 4), (4, 6), (0, 5)).
+Equivalence matches at margin 0.5 (corrected): (−8, 4) with lay population, d 0.235,
+p_IB < 0.001, p_IH 0.005; (−8, 5) d 0.332, p 0.026 / < 0.001. Closest otherwise: Kantian
+(−10, 4) d 0.18; non-util. (−6, 6) d 0.37; rule (0, 8) d 0.30; virtue (−8, 4) d 0.44;
+deontology (−8, 4) d 0.48; act (4, 4) d 0.97.
+
+Within-statement s.d. (IB / IH): base 0.97 / 1.32; (4, 4) 0.54 / 0.58; (4, 6) 0.56 / 0.51;
+(0, 5) 0.54 / 0.72; (0, 8) 0.57 / 0.65; (8, 8) 0.83 / 0.75; (−6, 6) 0.88 / 0.96; (−8, 4)
+1.00 / 0.97; (−10, 4) 1.17 / 0.91.
 
 Figure: `scripts/figures.py` section 10 -> `08_final_cells.png`.

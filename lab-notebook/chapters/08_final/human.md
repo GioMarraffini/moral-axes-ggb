@@ -21,19 +21,19 @@ unsteered model. Squares: the human groups.*
 
 | group (IB / IH) | setting (a, b) | reached IB / IH | distance | equivalence p | neutral | harm, no benefit | kindness |
 |---|---|---|---|---|---|---|---|
-| unsteered | | 5.20 / 2.88 | | | 4.22 | 1.58 | 6.30 |
-| lay population 3.65 / 3.31 | −8, 4 | 3.75 / 3.13 | 0.21 | **0.002** | −0.5 | +0.8 | −1.4 |
-| Kantian 2.86 / 1.94 | −10, 4 | 2.81 / 2.14 | 0.20 | 0.24 | −1.5 | +0.3 | −2.2 |
-| non-util. consequentialism 4.43 / 4.40 | −6, 6 | 4.68 / 4.16 | 0.35 | 0.23 | +0.2 | +1.7 | −1.1 |
-| rule utilitarianism 4.81 / 4.86 | 0, 8 | 5.09 / 4.81 | 0.28 | 0.38 | +0.7 | +2.7 | −1.0 |
-| virtue ethics 3.52 / 3.48 | −8, 4 | 3.75 / 3.13 | 0.42 | 0.35 | −0.5 | +0.8 | −1.4 |
-| other deontology 3.33 / 3.33 | −8, 4 | 3.75 / 3.13 | 0.46 | 0.31 | −0.5 | +0.8 | −1.4 |
-| act utilitarianism 5.65 / 6.05 | 4, 4 | 5.50 / 5.09 | 0.97 | 0.87 | +1.0 | +2.5 | −0.6 |
+| unsteered | | 5.22 / 2.84 | | | 4.53 | 1.55 | 6.31 |
+| lay population 3.65 / 3.31 | −8, 4 | 3.75 / 3.10 | 0.24 | **0.005** | −0.6 | +0.7 | −1.4 |
+| Kantian 2.86 / 1.94 | −10, 4 | 2.80 / 2.11 | 0.18 | 0.25 | −1.5 | +0.3 | −2.2 |
+| non-util. consequentialism 4.43 / 4.40 | −6, 6 | 4.70 / 4.14 | 0.37 | 0.24 | −0.2 | +1.7 | −1.1 |
+| rule utilitarianism 4.81 / 4.86 | 0, 8 | 5.10 / 4.80 | 0.30 | 0.39 | +0.3 | +2.7 | −1.0 |
+| virtue ethics 3.52 / 3.48 | −8, 4 | 3.75 / 3.10 | 0.44 | 0.38 | −0.6 | +0.7 | −1.4 |
+| other deontology 3.33 / 3.33 | −8, 4 | 3.75 / 3.10 | 0.48 | 0.32 | −0.6 | +0.7 | −1.4 |
+| act utilitarianism 5.65 / 6.05 | 4, 4 | 5.52 / 5.09 | 0.97 | 0.87 | +0.5 | +2.4 | −0.6 |
 
 Control columns are shifts from the unsteered model, chain of thought.
 
 - **One group is statistically indistinguishable**: the lay population, at (−8, 4), distance
-  0.21, equivalence within 0.5 points rejected on both scales (p < 0.001 and 0.002). This is
+  0.24, equivalence within 0.5 points rejected on both scales (p < 0.001 and 0.005). This is
   the only group whose spread (SD 1.2, N = 300) makes the test decidable; the philosopher
   groups have 11 to 36 members and plotted spreads that, read strictly, imply standard
   deviations near 2, so no condition can pass for them even at 0.2 points away.
@@ -45,7 +45,8 @@ Control columns are shifts from the unsteered model, chain of thought.
   Kantian cell is partly "disagree with everything". The cleanest cells are the
   moderate ones: (−8, 4) and (−6, 6), with the largest control shift of 1.4 and 1.7.
 - **Steering makes answers more consistent, not less**: within-statement variance falls
-  from 1.0 / 1.8 (IB / IH, unsteered) to 0.3 to 1.0 in every steered cell.
+  (standard deviation 0.97 / 1.32 for IB / IH unsteered) to 0.5 to 0.6 at the utilitarian
+  settings and 0.9 to 1.2 at the deontological ones.
 
 ## What this settles, and what it does not
 

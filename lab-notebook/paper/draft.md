@@ -174,14 +174,14 @@ the unsteered model; the last column is the distance in group standard deviation
 
 | group (IB / IH) | (a, b) | IB / IH | dist. | p | neutral | harm | kindness | SDs |
 |---|---|---|---|---|---|---|---|---|
-| unsteered | | 5.20 / 2.88 | | | 4.22 | 1.58 | 6.30 | |
-| lay population 3.65 / 3.31 | −8, 4 | 3.75 / 3.13 | 0.21 | 0.002 | −0.5 | +0.8 | −1.4 | 0.1 / 0.2 |
-| Kantian 2.86 / 1.94 | −10, 4 | 2.81 / 2.14 | 0.20 | 0.24 | −1.5 | +0.3 | −2.2 | 0.0 / 0.1 |
-| non-util. consequentialism 4.43 / 4.40 | −6, 6 | 4.68 / 4.16 | 0.35 | 0.23 | +0.2 | +1.7 | −1.1 | 0.1 / 0.1 |
-| rule utilitarianism 4.81 / 4.86 | 0, 8 | 5.09 / 4.81 | 0.28 | 0.38 | +0.7 | +2.7 | −1.0 | 0.1 / 0.0 |
-| virtue ethics 3.52 / 3.48 | −8, 4 | 3.75 / 3.13 | 0.42 | 0.35 | −0.5 | +0.8 | −1.4 | 0.3 / 0.2 |
-| other deontology 3.33 / 3.33 | −8, 4 | 3.75 / 3.13 | 0.46 | 0.31 | −0.5 | +0.8 | −1.4 | 0.6 / 0.2 |
-| act utilitarianism 5.65 / 6.05 | 4, 4 | 5.50 / 5.09 | 0.97 | 0.87 | +1.0 | +2.5 | −0.6 | 0.1 / 0.7 |
+| unsteered | | 5.22 / 2.84 | | | 4.53 | 1.55 | 6.31 | |
+| lay population 3.65 / 3.31 | −8, 4 | 3.75 / 3.10 | 0.24 | 0.005 | −0.6 | +0.7 | −1.4 | 0.1 / 0.2 |
+| Kantian 2.86 / 1.94 | −10, 4 | 2.80 / 2.11 | 0.18 | 0.25 | −1.5 | +0.3 | −2.2 | 0.0 / 0.1 |
+| non-util. consequentialism 4.43 / 4.40 | −6, 6 | 4.70 / 4.14 | 0.37 | 0.24 | −0.2 | +1.7 | −1.1 | 0.2 / 0.1 |
+| rule utilitarianism 4.81 / 4.86 | 0, 8 | 5.10 / 4.80 | 0.30 | 0.39 | +0.3 | +2.7 | −1.0 | 0.1 / 0.0 |
+| virtue ethics 3.52 / 3.48 | −8, 4 | 3.75 / 3.10 | 0.44 | 0.38 | −0.6 | +0.7 | −1.4 | 0.3 / 0.2 |
+| other deontology 3.33 / 3.33 | −8, 4 | 3.75 / 3.10 | 0.48 | 0.32 | −0.6 | +0.7 | −1.4 | 0.7 / 0.2 |
+| act utilitarianism 5.65 / 6.05 | 4, 4 | 5.52 / 5.09 | 0.97 | 0.87 | +0.5 | +2.4 | −0.6 | 0.1 / 0.7 |
 
 ![Figure 2](../figures/paper_plane.png)
 
@@ -195,16 +195,30 @@ deviations are 1.7 to 2.0 with 11 to 36 members. Act utilitarianism is the one g
 approached within 0.5: IH does not exceed 5.1 under any setting.
 
 The controls move. Raising IH raises acceptance of harm with no benefit in proportion
-(+0.8 at b = 4, +2.7 at b = 8), and lowering IB lowers ordinary kindness (−1.4 at a = −8,
+(+0.7 at b = 4, +2.7 at b = 8), and lowering IB lowers ordinary kindness (−1.4 at a = −8,
 −2.2 at a = −10); at a = −10 neutral opinions fall by 1.5, so the Kantian setting is partly
 disagreement. The moderate settings (−8, 4) and (−6, 6) shift no control by more than 1.7.
+Projecting a "pointless harm" direction (built from control answers the same way) out of
+v_IH does not separate the two: per point of IH gained, the control rises by 1.1 with v_IH
+and by 0.9 to 1.0 with the projected direction (Table 4). In this model the direction that
+accepts instrumental harm is the direction that accepts harm.
+
+**Table 4.** IH direction with the pointless-harm direction projected out; shifts from the
+unsteered model, three repetitions.
+
+| direction, strength | IH | harm, no benefit | kindness |
+|---|---|---|---|
+| v_IH, 4 | +1.7 | +1.9 | −0.8 |
+| v_IH, 8 | +2.0 | +2.6 | −1.1 |
+| v_IH minus harm, 4 | +1.0 | +0.9 | −0.4 |
+| v_IH minus harm, 8 | +1.7 | +1.6 | −0.6 |
 
 ![Figure 3](../figures/paper_variance.png)
 
 *Figure 3. Standard deviation of the 40 answers to one statement, averaged over statements.*
 
 Steering reduces the spread of answers (Figure 3): from 1.0 (IB) and 1.3 (IH) unsteered to
-0.6 at (4, 4) and (0, 8). A steered model answers the same statement more consistently
+0.5 to 0.6 at (4, 4) and (0, 8), and to 0.9 to 1.0 at (−8, 4). A steered model answers the same statement more consistently
 than the unsteered one.
 
 ## 5. Conclusion
