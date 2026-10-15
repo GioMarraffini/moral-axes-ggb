@@ -31,7 +31,7 @@ out = Path(args.out)
 out.mkdir(parents=True, exist_ok=True)
 v = {}
 for d in args.judge:
-    for f in glob.glob(d + "/*.json"):
+    for f in glob.glob(d + "/judge_*.json") + glob.glob(d + "/verdict_*.json"):
         v.update(json.load(open(f)))
 gen = [json.loads(l) for g in args.responses for f in sorted(glob.glob(g)) for l in open(f)]
 gen = [r for r in gen if r["cell"] in args.cells.split(",") and r["split"] == "train"

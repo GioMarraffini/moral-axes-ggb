@@ -23,7 +23,7 @@ args = ap.parse_args()
 
 v = {}
 for d in args.judge:
-    for f in glob.glob(d + "/*.json"):
+    for f in glob.glob(d + "/judge_*.json") + glob.glob(d + "/verdict_*.json"):
         v.update(json.load(open(f)))
 df = pd.concat(pd.read_json(f, lines=True) for g in args.files for f in sorted(glob.glob(g)))
 df = df[(df.split == "test") & ~df.instruction.isin(args.drop.split(","))]

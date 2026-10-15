@@ -64,7 +64,7 @@ def judged(files, judge):
     """
     import pandas as pd
     v = {}
-    for f in glob.glob(judge + "/*.json"):
+    for f in glob.glob(judge + "/judge_*.json") + glob.glob(judge + "/verdict_*.json"):
         v.update(json.load(open(f)))
     df = pd.concat(pd.read_json(f, lines=True) for f in sorted(glob.glob(files)))
     df["r"] = df.uid.map(v)
