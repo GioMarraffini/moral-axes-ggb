@@ -13,6 +13,8 @@ def load(name, dtype="fp16"):
     dt = {"fp32": torch.float32, "fp16": torch.float16, "bf16": torch.bfloat16}[dtype]
     tok = AutoTokenizer.from_pretrained(name)
     tok.padding_side = "left"
+    if tok.pad_token is None:
+        tok.pad_token = tok.eos_token
     model = AutoModelForCausalLM.from_pretrained(name, dtype=dt).to(dev).eval()
     return model, tok
 
