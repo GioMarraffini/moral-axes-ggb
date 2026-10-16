@@ -64,7 +64,7 @@ the grid (3B: a to −10, b to 8; 7B: a to −10, b to 8). On one H100 the whole
 ## 5. Place the model
 
 ```
-scripts/fit_plane.py '$W/grid/*.jsonl' --judge $W/grid/judge --layer L --out target_cells.json  # fit (a,b) per target
+scripts/fit_plane.py --run '$W/grid/*.jsonl' $W/grid/judge --layer L --out target_cells.json  # fit (a,b) per target
 scripts/targets.py '$W/final/*.jsonl' --judge $W/final/judge --csv targets.csv          # equivalence test
 scripts/report.py / scripts/figures.py                                                 # tables, figures
 ```

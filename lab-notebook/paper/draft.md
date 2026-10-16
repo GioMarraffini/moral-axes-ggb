@@ -13,7 +13,11 @@ are nearly orthogonal (cosine 0.18), and adding them to one layer with two stren
 the model anywhere in the plane: within 0.5 scale points of six of seven human groups,
 statistically equivalent to the lay population, and with lower answer variance than the
 unsteered model. The directions are built on 45 statements and evaluated on 54 held-out
-ones. We release the pipeline, which depends on the model only through its hidden states.
+ones. Run unchanged on Qwen2.5-7B-Instruct, the pipeline finds the same two near-orthogonal
+directions (cosine 0.12), each moving its scale by 2 to 2.5 points, but the reachable
+region is a curved band that passes above the lay and deontological groups and the
+settings that would reach them disturb the controls. We release the pipeline, which
+depends on the model only through its hidden states.
 
 ## 1. Introduction
 
@@ -36,7 +40,8 @@ protocol and report three findings.
 3. Six of the seven human groups of the benchmark are reached within 0.5 scale points, all
    seven within one group standard deviation, and the lay population is reached with
    statistical equivalence (Section 4.3). The pipeline uses nothing but hidden states and a
-   rating judge and transfers to any open-weight model.
+   rating judge; on Qwen2.5-7B-Instruct it finds the same two directions but reaches one
+   group (Section 4.4).
 
 ## 2. Related work
 
@@ -72,7 +77,8 @@ individuation of a model; we do not take a position on that here.
 ## 3. Methods
 
 **Model and data.** Qwen2.5-3B-Instruct (Yang et al., 2024), 36 decoder blocks, hidden size
-2048, fp16, with its default system prompt throughout. Statements: the 90 GGB statements
+2048, fp16, with its default system prompt throughout; Section 4.4 repeats the pipeline
+on Qwen2.5-7B-Instruct (28 blocks, hidden size 3584, bf16). Statements: the 90 GGB statements
 (50 IB, 40 IH) and the 9 OUS items. A fixed seed splits the 90 into 45 train (25 IB, 20 IH)
 and 45 test; the 9 OUS items are test only. Three control sets of 20 statements each were
 written for this study: neutral opinions ("Tea is a better morning drink than coffee"),
@@ -107,7 +113,10 @@ statements).
 
 **Placing the model.** A 5 x 5 grid of (a, b) in {−4, −2, 0, 2, 4} is answered with three
 repetitions, a quadratic surface is fitted from (a, b) to each score, and inverted for each
-target group; settings beyond the grid are tried where the inverse lies outside it. The
+target group; settings beyond the grid are tried where the inverse lies outside it. For
+the 7B the 5 x 5 grid is run at blocks 14, 18 and 21 (0.5, 0.64 and 0.75 of depth), the
+block kept is the one whose single-direction settings move their own scale most with the
+smallest control shift, and a second grid at that block takes a to −10 and 8 and b to 8. The
 chosen settings are answered with the full protocol. The human targets are the seven group
 means of Marraffini et al. (2024, Figure 1): six philosopher groups from Kahane et al.
 (2018) and the lay population. Distance is Euclidean in the plane. Equivalence to a group
@@ -221,6 +230,59 @@ Steering reduces the spread of answers (Figure 3): from 1.0 (IB) and 1.3 (IH) un
 0.5 to 0.6 at (4, 4) and (0, 8), and to 0.9 to 1.0 at (−8, 4). A steered model answers the same statement more consistently
 than the unsteered one.
 
+### 4.4 A second model
+
+The pipeline of Section 3 depends on the model only through its hidden states and a rating
+judge. Whether its result depends on the model is the question of this section. It was run
+unchanged on Qwen2.5-7B-Instruct: ten unprompted answers per train statement, directions
+from the accepting and rejecting answers (739 against 125 for IB, 58 against 721 for IH;
+the 7B rejects fewer IB statements and accepts fewer IH statements than the 3B), the 5 x 5
+grid at three blocks, and a second grid at block 18 with a in {−10, −8, −6, 6, 8} and b
+in {−2, 0, 2, 4, 6, 8}, three repetitions, controls once. Unsteered the 7B scores IB 4.80
+and IH 2.31 (3B: 5.22 and 2.84) with harm with no benefit at 1.08 and kindness at 6.36.
+The cosine between v_IB and v_IH is 0.12 at block 18 (0.08 to 0.18 across the middle
+blocks). Table 5 gives the settings that bound the reachable region and the closest
+setting to each group; Figure 4 shows every block-18 setting.
+
+**Table 5.** Qwen2.5-7B-Instruct, block 18, selected settings (a, b); scales on the 54
+test statements, three repetitions; controls one repetition. Last column: the closest
+human group and its distance in group standard deviations.
+
+| (a, b) | IB | IH | neutral | harm, no benefit | kindness | closest group (d) |
+|---|---|---|---|---|---|---|
+| (0, 0) | 4.80 | 2.31 | 4.40 | 1.08 | 6.36 | |
+| (0, 8) | 5.19 | 4.61 | 4.80 | 2.86 | 6.02 | rule utilitarianism (0.46) |
+| (8, 0) | 5.69 | 4.86 | 4.90 | 2.20 | 6.25 | |
+| (8, 8) | 5.52 | 5.06 | 5.10 | 5.03 | 6.14 | act utilitarianism (1.00) |
+| (−6, 6) | 4.56 | 3.25 | 4.38 | 1.54 | 5.54 | lay population (0.91) |
+| (−6, 8) | 4.61 | 3.85 | 4.70 | 2.49 | 5.59 | non-utilitarian consequentialism (0.58) |
+| (−8, 0) | 2.68 | 1.28 | 3.18 | 1.06 | 5.00 | |
+| (−8, 4) | 3.78 | 1.89 | 3.72 | 1.41 | 5.31 | |
+| (−10, 2) | 3.00 | 1.70 | 3.35 | 1.62 | 4.65 | Kantian ethics (0.27) |
+| (−10, 8) | 4.38 | 2.70 | 4.20 | 1.80 | 5.82 | |
+
+![Figure 4](../figures/10_qwen7b_L18.png)
+
+*Figure 4. Qwen2.5-7B-Instruct, every block-18 setting of both grids in the (IB, IH)
+plane, lines joining equal a or b; star: unsteered; squares: human groups. Left, colour is
+a; right, colour is the largest shift of a control set from unsteered.*
+
+Each direction moves its own scale by 2 to 2.5 points (IB from 2.3 to 5.7, IH from 1.2
+to 5.1), so the two directions exist in the 7B as they do in the 3B. The region they span
+differs in shape. IH saturates near 5.0 and IB near 5.7, so the upper-right corner stops
+0.5 points short of act utilitarianism on each scale. Lowering IB alone runs down the left
+edge of the plane to (2.3, 1.7); adding b from there moves up and to the right along a
+curve, because v_IH raises IB (+0.4 at b = 8) and v_IB at negative a lowers IH. The band
+passes above the cluster of the lay population, virtue ethics and other deontology (IB 3.3
+to 3.7, IH 3.3 to 3.5): the closest settings are 0.9 to 1.2 group standard deviations
+away, against 0.2 to 0.5 for the 3B (Table 3). The one group within 0.5 is Kantian ethics
+at (−10, 2), and that setting lowers neutral opinions by 1.1 and kindness by 1.7; at a =
+−8 the two controls fall by 1.2 and 1.4, so the settings that approach the low-IB groups
+are the settings where the model stops answering the controls normally. The harm control
+follows IH as in the 3B (+0.8 per point of IH at (0, 8), +1.4 at (8, 8)). In the 7B,
+then, the same two directions are found and each is steerable, but the low-IB, medium-IH
+positions that most human groups occupy are not points of the block-18 plane.
+
 ## 5. Conclusion
 
 A model's position on the two utilitarian scales is not fixed. Two directions, read off the
@@ -229,7 +291,12 @@ make its answers more consistent, and the point can be any of the positions huma
 occupy, within the resolution the human data allow. The limit found here is specificity on
 the harm side: in this model the direction that raises instrumental harm raises acceptance
 of harm without benefit as well, so a target that requires high IH is reached at the cost
-of a control. Whether a larger model separates the two is the next question.
+of a control. The 7B model of the same family does not separate the two either, and
+adds a second limit: its two directions are found and each moves its scale, but the
+region they span is a band that misses the low-IB, medium-IH positions of most human
+groups, and the strengths that would reach them break the controls. Which models have a
+plane that covers the human positions, and whether a direction built at another block or
+from a balanced contrast widens the 7B's, are the next questions.
 
 For deployed agents the result cuts both ways. Agents act on moral criteria whether or not
 anyone set them, and recent incidents in which agents pursued their goals against their

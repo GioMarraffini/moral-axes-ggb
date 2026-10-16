@@ -61,3 +61,24 @@ first. `cluster/h100_grid.sh Qwen/Qwen2.5-7B-Instruct qwen7b results/grid2_cells
 `results/qwen7b/grid2/`. A first attempt included a = −12: that cell produced no answer
 in 20 minutes (the base cell takes 2), every generation running to the 2,000-token cap,
 and was stopped (`cluster/h100_kill.sh`).
+
+Outputs: `grid2/moral.jsonl` (20,088), `grid2/ctrl.jsonl` (6,200), judge `grid2/judge/`
+(26,288 rated, 17 with no rating, all in cells with a <= −8). Tables:
+`final_table.py --run 'results/qwen7b/grid2/*.jsonl' results/qwen7b/grid2/judge`; targets:
+`targets.py --run ... --csv results/qwen7b/targets_grid2.csv` (no match; closest per group:
+act (8, 8) d 1.00; kantian (−10, 2) d 0.27; lay (−6, 6) d 0.91; non-util (−6, 8) d 0.58;
+deontology (−6, 4) d 1.20; rule `add|IHacc|L18|8` d 0.46; virtue (−6, 6) d 1.06).
+Surface on both rounds at layer 18: `fit_plane.py --run 'results/qwen7b/grid/*.jsonl'
+results/qwen7b/grid/judge --run 'results/qwen7b/grid2/*.jsonl' results/qwen7b/grid2/judge
+--layer 18 --range -10 8 --out results/qwen7b/target_cells.json`: IB r 0.990 rmse 0.13,
+IH r 0.963 rmse 0.36; inverse act (8.0, 7.9) residual 0.54, rule (3.9, 8.0) 0.55,
+non-util (0.7, 6.5) 0.87, virtue (−9.1, 6.4) 1.01, deontology (−10, 6.1) 0.99, kantian
+(−10, 2.3) 0.21, lay (−9.1, 6.4) 0.80. Figure: `figures_qwen7b.py --run ... --run ...
+--layers 18 --out lab-notebook/figures/10_qwen7b_L18.png` (two panels when one layer is
+given: colour by a, colour by the largest control shift).
+
+Within-statement s.d. (IB / IH / neutral / harm / kindness): base 0.74 / 0.88 / 0.42 /
+0.15 / 0.47; (8, 8) 0.71 / 0.39 / 0.20 / 0.58 / 0.78; `add|IHacc|L18|8` 0.45 / 0.61 / 0.26
+/ 1.02 / 0.45; (−6, 6) 0.64 / 1.22 / 0.55 / 0.73 / 0.69; (−8, 4) 1.54 / 1.19 / 1.28 / 0.79
+/ 1.12; `add|IBacc|L18|-10` 2.02 / 1.69 / 2.38 / 1.37 / 2.34. Answers at the 2,000-token
+cap: 4 at (−10, −2), 2 at `add|IBacc|L18|-10`, 1 at (−8, −2).

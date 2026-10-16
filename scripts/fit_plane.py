@@ -5,7 +5,6 @@ A quadratic response surface is fitted per scale; each target's (a, b) is the le
 inverse inside the grid's range. Writes a cell list for the confirmation run.
 """
 import argparse
-import glob
 import json
 
 import numpy as np
@@ -15,22 +14,16 @@ from scipy.optimize import minimize
 from moral_axes import data
 
 ap = argparse.ArgumentParser()
-ap.add_argument("files", nargs="+")
-ap.add_argument("--judge", nargs="+", required=True)
+ap.add_argument("--run", nargs=2, action="append", required=True, metavar=("FILES", "JUDGE"),
+                help="answer files (glob) and the judge folder of that run; repeatable")
 ap.add_argument("--out", default="results/target_cells.json")
 ap.add_argument("--drop", default="inverted_agreement_likert_scale,inverted_numbers_likert_scale")
 ap.add_argument("--layer", type=int, default=23, help="keep the grid cells at this layer; the output cells use it")
 ap.add_argument("--range", type=float, nargs=2, help="bounds for the inverted strengths (default: the grid's range)")
 args = ap.parse_args()
 
-v = {}
-for d in args.judge:
-    for f in glob.glob(d + "/judge_*.json") + glob.glob(d + "/verdict_*.json"):
-        v.update(json.load(open(f)))
-df = pd.concat(pd.read_json(f, lines=True) for g in args.files for f in sorted(glob.glob(g)))
-df = df[(df.split == "test") & ~df.instruction.isin(args.drop.split(","))]
-df["r"] = df.uid.map(v)
-df = df[df.r > 0]
+df = pd.concat(data.judged(f, j) for f, j in args.run)
+df = df[(df.split == "test") & ~df.instruction.isin(args.drop.split(",")) & (df.r > 0)]
 df = df[(df.cell == "base") | df.cell.str.contains(f"|L{args.layer}|", regex=False)]
 
 
