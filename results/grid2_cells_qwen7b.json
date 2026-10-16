@@ -3,250 +3,18 @@
 "kind": "base"
 },
 {
-"kind": "steer2",
-"terms": [
-{
-"axis": "IBacc",
-"layer": 18,
-"s": -12
-},
-{
+"kind": "steer",
 "axis": "IHacc",
+"mode": "add",
 "layer": 18,
-"s": -2
-}
-]
+"s": 6
 },
 {
 "kind": "steer",
-"axis": "IBacc",
+"axis": "IHacc",
 "mode": "add",
 "layer": 18,
-"s": -12
-},
-{
-"kind": "steer2",
-"terms": [
-{
-"axis": "IBacc",
-"layer": 18,
-"s": -12
-},
-{
-"axis": "IHacc",
-"layer": 18,
-"s": 2
-}
-]
-},
-{
-"kind": "steer2",
-"terms": [
-{
-"axis": "IBacc",
-"layer": 18,
-"s": -12
-},
-{
-"axis": "IHacc",
-"layer": 18,
-"s": 4
-}
-]
-},
-{
-"kind": "steer2",
-"terms": [
-{
-"axis": "IBacc",
-"layer": 18,
-"s": -12
-},
-{
-"axis": "IHacc",
-"layer": 18,
-"s": 6
-}
-]
-},
-{
-"kind": "steer2",
-"terms": [
-{
-"axis": "IBacc",
-"layer": 18,
-"s": -12
-},
-{
-"axis": "IHacc",
-"layer": 18,
 "s": 8
-}
-]
-},
-{
-"kind": "steer2",
-"terms": [
-{
-"axis": "IBacc",
-"layer": 18,
-"s": -10
-},
-{
-"axis": "IHacc",
-"layer": 18,
-"s": -2
-}
-]
-},
-{
-"kind": "steer",
-"axis": "IBacc",
-"mode": "add",
-"layer": 18,
-"s": -10
-},
-{
-"kind": "steer2",
-"terms": [
-{
-"axis": "IBacc",
-"layer": 18,
-"s": -10
-},
-{
-"axis": "IHacc",
-"layer": 18,
-"s": 2
-}
-]
-},
-{
-"kind": "steer2",
-"terms": [
-{
-"axis": "IBacc",
-"layer": 18,
-"s": -10
-},
-{
-"axis": "IHacc",
-"layer": 18,
-"s": 4
-}
-]
-},
-{
-"kind": "steer2",
-"terms": [
-{
-"axis": "IBacc",
-"layer": 18,
-"s": -10
-},
-{
-"axis": "IHacc",
-"layer": 18,
-"s": 6
-}
-]
-},
-{
-"kind": "steer2",
-"terms": [
-{
-"axis": "IBacc",
-"layer": 18,
-"s": -10
-},
-{
-"axis": "IHacc",
-"layer": 18,
-"s": 8
-}
-]
-},
-{
-"kind": "steer2",
-"terms": [
-{
-"axis": "IBacc",
-"layer": 18,
-"s": -8
-},
-{
-"axis": "IHacc",
-"layer": 18,
-"s": -2
-}
-]
-},
-{
-"kind": "steer",
-"axis": "IBacc",
-"mode": "add",
-"layer": 18,
-"s": -8
-},
-{
-"kind": "steer2",
-"terms": [
-{
-"axis": "IBacc",
-"layer": 18,
-"s": -8
-},
-{
-"axis": "IHacc",
-"layer": 18,
-"s": 2
-}
-]
-},
-{
-"kind": "steer2",
-"terms": [
-{
-"axis": "IBacc",
-"layer": 18,
-"s": -8
-},
-{
-"axis": "IHacc",
-"layer": 18,
-"s": 4
-}
-]
-},
-{
-"kind": "steer2",
-"terms": [
-{
-"axis": "IBacc",
-"layer": 18,
-"s": -8
-},
-{
-"axis": "IHacc",
-"layer": 18,
-"s": 6
-}
-]
-},
-{
-"kind": "steer2",
-"terms": [
-{
-"axis": "IBacc",
-"layer": 18,
-"s": -8
-},
-{
-"axis": "IHacc",
-"layer": 18,
-"s": 8
-}
-]
 },
 {
 "kind": "steer2",
@@ -398,6 +166,88 @@
 ]
 },
 {
+"kind": "steer2",
+"terms": [
+{
+"axis": "IBacc",
+"layer": 18,
+"s": -8
+},
+{
+"axis": "IHacc",
+"layer": 18,
+"s": -2
+}
+]
+},
+{
+"kind": "steer",
+"axis": "IBacc",
+"mode": "add",
+"layer": 18,
+"s": -8
+},
+{
+"kind": "steer2",
+"terms": [
+{
+"axis": "IBacc",
+"layer": 18,
+"s": -8
+},
+{
+"axis": "IHacc",
+"layer": 18,
+"s": 2
+}
+]
+},
+{
+"kind": "steer2",
+"terms": [
+{
+"axis": "IBacc",
+"layer": 18,
+"s": -8
+},
+{
+"axis": "IHacc",
+"layer": 18,
+"s": 4
+}
+]
+},
+{
+"kind": "steer2",
+"terms": [
+{
+"axis": "IBacc",
+"layer": 18,
+"s": -8
+},
+{
+"axis": "IHacc",
+"layer": 18,
+"s": 6
+}
+]
+},
+{
+"kind": "steer2",
+"terms": [
+{
+"axis": "IBacc",
+"layer": 18,
+"s": -8
+},
+{
+"axis": "IHacc",
+"layer": 18,
+"s": 8
+}
+]
+},
+{
 "kind": "steer",
 "axis": "IBacc",
 "mode": "add",
@@ -465,17 +315,85 @@
 ]
 },
 {
-"kind": "steer",
-"axis": "IHacc",
-"mode": "add",
+"kind": "steer2",
+"terms": [
+{
+"axis": "IBacc",
 "layer": 18,
-"s": 6
+"s": -10
+},
+{
+"axis": "IHacc",
+"layer": 18,
+"s": -2
+}
+]
 },
 {
 "kind": "steer",
-"axis": "IHacc",
+"axis": "IBacc",
 "mode": "add",
 "layer": 18,
+"s": -10
+},
+{
+"kind": "steer2",
+"terms": [
+{
+"axis": "IBacc",
+"layer": 18,
+"s": -10
+},
+{
+"axis": "IHacc",
+"layer": 18,
+"s": 2
+}
+]
+},
+{
+"kind": "steer2",
+"terms": [
+{
+"axis": "IBacc",
+"layer": 18,
+"s": -10
+},
+{
+"axis": "IHacc",
+"layer": 18,
+"s": 4
+}
+]
+},
+{
+"kind": "steer2",
+"terms": [
+{
+"axis": "IBacc",
+"layer": 18,
+"s": -10
+},
+{
+"axis": "IHacc",
+"layer": 18,
+"s": 6
+}
+]
+},
+{
+"kind": "steer2",
+"terms": [
+{
+"axis": "IBacc",
+"layer": 18,
+"s": -10
+},
+{
+"axis": "IHacc",
+"layer": 18,
 "s": 8
+}
+]
 }
 ]

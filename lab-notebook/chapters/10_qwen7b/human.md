@@ -61,7 +61,7 @@ Green squares: the human groups.*
   the lay population is 0.8 group SD away. As in the 3B, where the lay population needed
   a = −8, the inversion asks for a of −6 to −12.
 
-A second round at layer 18 with a in −12 to −6 and 6 to 8 and b in −2 to 8 (37 cells) is
+A second round at layer 18 with a in −10 to −6 and 6 to 8 and b in −2 to 8 (31 cells; a = −12 was tried first and ran every answer to the token cap) is
 in `llm.md`; its result is written below when it lands.
 
 ## Round 2

@@ -54,8 +54,10 @@ L14 IBacc +1.47 / +1.71 / +0.22 / +0.21 / +0.19 and −0.39 / +0.80 / +0.10 / +0
 
 ## Round 2
 
-Cells `results/grid2_cells_qwen7b.json`: `base`; layer 18; a in {−12, −10, −8, −6} x b in
-{−2, 0, 2, 4, 6, 8}; a in {6, 8} x b in {0, 2, 4, 6, 8}; a = 0 with b in {6, 8}: 37
-cells. `cluster/h100_grid.sh Qwen/Qwen2.5-7B-Instruct qwen7b results/grid2_cells_qwen7b.json grid2`
+Cells `results/grid2_cells_qwen7b.json`: `base`; layer 18; a = 0 with b in {6, 8}; a in {−6,
+−8, −10} x b in {−2, 0, 2, 4, 6, 8}; a in {6, 8} x b in {0, 2, 4, 6, 8}: 31 cells, mild
+first. `cluster/h100_grid.sh Qwen/Qwen2.5-7B-Instruct qwen7b results/grid2_cells_qwen7b.json grid2`
 (log `qwen7b_grid2.log`), same iterations and judge as round 1, outputs
-`results/qwen7b/grid2/`.
+`results/qwen7b/grid2/`. A first attempt included a = −12: that cell produced no answer
+in 20 minutes (the base cell takes 2), every generation running to the 2,000-token cap,
+and was stopped (`cluster/h100_kill.sh`).

@@ -57,7 +57,7 @@ Then step 2 on both outputs. Layer: the first run sweeps L in {0.5, 0.65, 0.75} 
 with a 3-iteration grid a, b in {−4, −2, 0, 2, 4}; the layer is the one whose single-axis
 cells move their own scale most with the smallest control shift (3B: 23 of 36; 7B: 18
 of 28). A second round at that layer widens the strengths until the groups are inside
-the grid (3B: a to −10, b to 8; 7B: a to −12, b to 8). On one H100 the whole chain is
+the grid (3B: a to −10, b to 8; 7B: a to −10, b to 8). On one H100 the whole chain is
 `cluster/h100_next_model.sh MODEL TAG grid_cells.json` (steps 1 to 4, first round) and
 `cluster/h100_grid.sh MODEL TAG cells.json SUBDIR` (any further grid).
 
