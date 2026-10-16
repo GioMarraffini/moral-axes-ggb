@@ -53,13 +53,18 @@ scripts/generate.py --model M --directions $W/directions/directions.npz --cells 
   --split test --types IB,IH --iterations 10 ...                  # scales
 scripts/generate.py ... --types neutral,harm_no_benefit,kindness --iterations 3   # controls
 ```
-Then step 2 on both outputs. Layer: the first run should sweep L in {0.45, 0.55, 0.65,
-0.75} of depth with a 3-iteration grid a, b in {−4, −2, 0, 2, 4}; for the 3B, L = 23 of 36.
+Then step 2 on both outputs. Layer: the first run sweeps L in {0.5, 0.65, 0.75} of depth
+with a 3-iteration grid a, b in {−4, −2, 0, 2, 4}; the layer is the one whose single-axis
+cells move their own scale most with the smallest control shift (3B: 23 of 36; 7B: 18
+of 28). A second round at that layer widens the strengths until the groups are inside
+the grid (3B: a to −10, b to 8; 7B: a to −12, b to 8). On one H100 the whole chain is
+`cluster/h100_next_model.sh MODEL TAG grid_cells.json` (steps 1 to 4, first round) and
+`cluster/h100_grid.sh MODEL TAG cells.json SUBDIR` (any further grid).
 
 ## 5. Place the model
 
 ```
-scripts/fit_plane.py '$W/grid/*.jsonl' --judge $W/grid/judge --out target_cells.json  # fit (a,b) per target
+scripts/fit_plane.py '$W/grid/*.jsonl' --judge $W/grid/judge --layer L --out target_cells.json  # fit (a,b) per target
 scripts/targets.py '$W/final/*.jsonl' --judge $W/final/judge --csv targets.csv          # equivalence test
 scripts/report.py / scripts/figures.py                                                 # tables, figures
 ```
