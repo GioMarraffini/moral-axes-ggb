@@ -19,6 +19,8 @@ ap.add_argument("files", nargs="+")
 ap.add_argument("--judge", nargs="+", required=True)
 ap.add_argument("--out", default="results/target_cells.json")
 ap.add_argument("--drop", default="inverted_agreement_likert_scale,inverted_numbers_likert_scale")
+ap.add_argument("--layer", type=int, default=23, help="keep the grid cells at this layer; the output cells use it")
+ap.add_argument("--range", type=float, nargs=2, help="bounds for the inverted strengths (default: the grid's range)")
 args = ap.parse_args()
 
 v = {}
@@ -29,6 +31,7 @@ df = pd.concat(pd.read_json(f, lines=True) for g in args.files for f in sorted(g
 df = df[(df.split == "test") & ~df.instruction.isin(args.drop.split(","))]
 df["r"] = df.uid.map(v)
 df = df[df.r > 0]
+df = df[(df.cell == "base") | df.cell.str.contains(f"|L{args.layer}|", regex=False)]
 
 
 def strengths(c):
@@ -58,7 +61,7 @@ for k in ("IB", "IH"):
     pred = X @ coef[k]
     print(f"{k}: fit r = {np.corrcoef(pred, pts[k])[0, 1]:.3f}, rmse = {np.sqrt(((pred - pts[k]) ** 2).mean()):.2f}")
 
-lo, hi = pts.a.min(), pts.a.max()
+lo, hi = args.range if args.range else (pts.a.min(), pts.a.max())
 targets = {k: t for k, t in json.load(open(data.D / "targets.json")).items() if k[0] != "_"}
 out = []
 for name, t in targets.items():
@@ -68,6 +71,7 @@ for name, t in targets.items():
     a, b = (round(float(x), 1) for x in best.x)
     print(f"{name:34s} a={a:+.1f} b={b:+.1f} predicted IB {feat(a, b) @ coef['IB']:.2f} IH {feat(a, b) @ coef['IH']:.2f}"
           f" target {t['IB']:.2f} {t['IH']:.2f} residual {np.sqrt(best.fun):.2f}")
-    terms = [t_ for t_ in ({"axis": "IBacc", "layer": 23, "s": a}, {"axis": "IHacc", "layer": 23, "s": b}) if t_["s"] != 0]
+    L = args.layer
+    terms = [t_ for t_ in ({"axis": "IBacc", "layer": L, "s": a}, {"axis": "IHacc", "layer": L, "s": b}) if t_["s"] != 0]
     out.append({"kind": "steer2", "terms": terms, "target": name})
 json.dump(out, open(args.out, "w"), indent=0)
