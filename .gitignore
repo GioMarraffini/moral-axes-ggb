@@ -11,3 +11,7 @@ results/*
 !results/directions*/
 results/directions*/acts_*.npz
 results/directions*/merged.npz
+!results/*cells*.json
+!results/qwen*/
+results/qwen*/base/
+results/qwen*/grid*/
