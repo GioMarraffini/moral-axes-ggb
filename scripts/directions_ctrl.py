@@ -47,7 +47,7 @@ for t in args.types.split(","):
     lo = [lo[i] for i in rng.permutation(len(lo))[:args.max_per_side]]
     acts = {}
     for name, rs in (("hi", hi), ("lo", lo)):
-        prompts = [data.cot_prompt(data.system(None), instr[r["instruction"]], r["statement"]) for r in rs]
+        prompts = [data.cot_prompt(data.system(None, args.model), instr[r["instruction"]], r["statement"], tok) for r in rs]
         acts[name] = response_means(model, tok, prompts, [r["response"] for r in rs])
     key = {"harm_no_benefit": "harmacc", "kindness": "kindacc", "neutral": "neutralacc"}[t]
     Z[f"{key}|v"] = (acts["hi"].mean(0) - acts["lo"].mean(0)).numpy().astype(np.float32)

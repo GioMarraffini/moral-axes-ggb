@@ -36,7 +36,7 @@ jobs = json.load(open(args.cells))
 items = [(r, k, it) for r in rows for k in names for it in range(args.iterations)][i::n]
 with open(args.out, "w") as f:
     for ci, c in enumerate(jobs):
-        prompts = [data.cot_prompt(C.system(c), instr[k], r["statement"]) for r, k, _ in items]
+        prompts = [data.cot_prompt(C.system(c, args.model), instr[k], r["statement"], tok) for r, k, _ in items]
         with steer(model, C.hooks(c, Z, model.device)):
             resp = generate(model, tok, prompts, args.max_new_tokens, args.temperature,
                             args.bs, seed=1000 * ci + i)

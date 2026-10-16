@@ -22,7 +22,7 @@ Every chapter has two versions:
 | 9. Cleaning the axes | [human](chapters/09_cleaning_the_axes/human.md) | [llm](chapters/09_cleaning_the_axes/llm.md) | Projecting a "pointless harm" direction out of IH removes IH gain and harm gain in the same proportion: in this model the IH axis is a harm-acceptance axis. |
 | 10. Qwen2.5-7B-Instruct | [human](chapters/10_qwen7b/human.md) | [llm](chapters/10_qwen7b/llm.md) | The pipeline runs unchanged. Directions near-orthogonal (cos 0.12), layer 18 of 28; each axis moves 2 to 2.5 points. The reachable region is a curved band that passes above the lay and deontological groups (low IB with medium IH not reached), IH saturates near 5, and a < −6 breaks the controls. Only the Kantian group is within 0.5, in the broken regime. |
 
-Also: [`PIPELINE.md`](PIPELINE.md), the curated pipeline with its options, and
+Also: [`PIPELINE.md`](PIPELINE.md), the curated pipeline with its options, [`OPTIONS.md`](OPTIONS.md), steering changes not yet tried, and
 [`paper/draft.md`](paper/draft.md), the manuscript draft.
 
 Shared material: [`figures/`](figures/), the repo's `data/ggb/` (statements, controls, prompts),

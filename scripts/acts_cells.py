@@ -27,7 +27,7 @@ rows = [r for r in rows if r["iteration"] < args.iterations and r["instruction"]
         and r["type"] in ("IB", "IH")]
 instr = data.instructions()
 model, tok = load(args.model, args.dtype)
-prompts = [data.cot_prompt(data.system(None), instr[r["instruction"]], r["statement"]) for r in rows]
+prompts = [data.cot_prompt(data.system(None, args.model), instr[r["instruction"]], r["statement"], tok) for r in rows]
 acts = response_means(model, tok, prompts, [r["response"] for r in rows])[:, args.layer].numpy()
 np.savez_compressed(args.out, acts=acts.astype(np.float32), cell=[r["cell"] for r in rows],
                     type=[r["type"] for r in rows], id=[r["id"] for r in rows], uid=[r["uid"] for r in rows])

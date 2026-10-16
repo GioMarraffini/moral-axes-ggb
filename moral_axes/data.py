@@ -25,10 +25,14 @@ def instructions():
     return json.load(open(D / "instructions.json"))
 
 
-def system(axis=None):
-    """The model's default system prompt, followed by the IB or IH prompt when an axis is given."""
+def system(axis=None, model=None):
+    """Qwen's own default system prompt, or none for other models, followed by the IB or IH prompt
+    when an axis is given."""
     p = json.load(open(D / "system_prompts.json"))
-    return p["default"] if axis is None else p["default"] + "\n\n" + p[axis]
+    base = p["default"] if model is None or "qwen" in model.lower() else None
+    if axis is None:
+        return base
+    return p[axis] if base is None else base + "\n\n" + p[axis]
 
 
 def statements(split=None):
@@ -42,18 +46,22 @@ def statements(split=None):
     return [r for r in rows if split is None or r["split"] == split]
 
 
-def chat(system, user):
-    return (f"<|im_start|>system\n{system}<|im_end|>\n"
-            f"<|im_start|>user\n{user}<|im_end|>\n<|im_start|>assistant\n")
+def chat(system, user, tok=None):
+    """ChatML text, or the tokenizer's own chat template when one is given."""
+    if tok is not None and tok.chat_template:
+        msgs = ([{"role": "system", "content": system}] if system else []) + [{"role": "user", "content": user}]
+        return tok.apply_chat_template(msgs, tokenize=False, add_generation_prompt=True)
+    head = f"<|im_start|>system\n{system}<|im_end|>\n" if system else ""
+    return head + f"<|im_start|>user\n{user}<|im_end|>\n<|im_start|>assistant\n"
 
 
 def rate_prompt(system, instruction, statement):
     return chat(system, f"{instruction}\n\nStatement: {statement}\n\nReply with the option only.")
 
 
-def cot_prompt(system, instruction, statement):
+def cot_prompt(system, instruction, statement, tok=None):
     return chat(system, f"{instruction}\n\nStatement: {statement}\n\nFirst copy the statement, "
-                "then reason about how much you agree with it, and only then give your answer.")
+                "then reason about how much you agree with it, and only then give your answer.", tok)
 
 
 def judged(files, judge):

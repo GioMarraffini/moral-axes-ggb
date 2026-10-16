@@ -41,7 +41,7 @@ model, tok = load(args.model, args.dtype)
 Z, geom = {}, {}
 for axis in ("IB", "IH"):
     rows = [r for r in gen if r["type"] == axis][:args.limit]
-    prompts = [data.cot_prompt(data.system(None), instr[r["instruction"]], r["statement"]) for r in rows]
+    prompts = [data.cot_prompt(data.system(None, args.model), instr[r["instruction"]], r["statement"], tok) for r in rows]
     acts = response_means(model, tok, prompts, [r["response"] for r in rows])
     rating = torch.tensor([v[r["uid"]] for r in rows])
     hi, lo = acts[rating >= 5], acts[rating <= 3]

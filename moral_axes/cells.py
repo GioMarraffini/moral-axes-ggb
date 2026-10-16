@@ -86,8 +86,8 @@ def name(c):
     return f"{c['mode']}|{c['axis']}|L{c['layer']}|{c['s']:g}"
 
 
-def system(c):
-    return data.system(c["axis"] if c["kind"] == "prompt" else None)
+def system(c, model=None):
+    return data.system(c["axis"] if c["kind"] == "prompt" else None, model)
 
 
 def hooks(c, Z, dev):
