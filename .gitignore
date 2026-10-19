@@ -25,3 +25,5 @@ results/llama1b/grid*/
 results/gemma2b/base/
 results/gemma2b/grid*/
 results/qwen*/aff*/
+results/qwen*/grid_np/
+results/qwen*/np/

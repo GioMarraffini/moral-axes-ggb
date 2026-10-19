@@ -1,0 +1,32 @@
+[
+{
+"kind": "steer2",
+"terms": [
+{
+"axis": "IBacc",
+"layer": 18,
+"s": 4
+},
+{
+"axis": "IHacc",
+"layer": 18,
+"s": -4
+}
+]
+},
+{
+"kind": "steer2",
+"terms": [
+{
+"axis": "IBacc",
+"layer": 18,
+"s": 4
+},
+{
+"axis": "IHacc",
+"layer": 18,
+"s": -2
+}
+]
+}
+]
