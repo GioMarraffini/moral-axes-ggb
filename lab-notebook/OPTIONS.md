@@ -24,3 +24,5 @@ Before any of these: the reading that the 7B sits nearer a corner of the plane t
 and so needs a larger push, which is what breaks the controls. The model survey
 (`cluster/h100_survey.sh`, `scripts/survey_table.py`) tests it by placing many sizes
 unsteered; the pipeline then runs first on the models closest to the lay population.
+
+Tried: the affine mean-and-spread hook from manifold-persona (chapter 13). On the 7B it reduces to the additive hook in another unit, because accepting and rejecting answers differ in mean and not in spread.
