@@ -4,10 +4,10 @@ Steering changes for a model whose reachable band misses the human groups (chapt
 each one H100 chain of about two hours comparing single-direction cells on the test split
 with the three controls:
 
-1. **Direction quality.** Rebuild the IH direction from more accepting answers (thirty
-   iterations on the IH train statements instead of ten; the 7B gave 58) and read it at
-   the last response token as well as the response mean (Xu et al. 2026 use the last
-   token); compare the two.
+1. **Direction quality.** Read the direction at the last response token as well as the
+   response mean (Xu et al. 2026 use the last token); compare the two. The other half of
+   this option, more accepting answers, is done (chapter 14): the IH prompt gives 453
+   accepting answers instead of 58 and the grid does not change.
 2. **Where the push goes in.** Steer at several layers at once (for the 7B: 14, 18, 21 at
    a third of the strength each) and inject only into generated tokens, not the statement
    tokens.
@@ -25,4 +25,4 @@ and so needs a larger push, which is what breaks the controls. The model survey
 (`cluster/h100_survey.sh`, `scripts/survey_table.py`) tests it by placing many sizes
 unsteered; the pipeline then runs first on the models closest to the lay population.
 
-Tried: the affine mean-and-spread hook from manifold-persona (chapter 13). On the 7B it reduces to the additive hook in another unit, because accepting and rejecting answers differ in mean and not in spread.
+Tried: the affine mean-and-spread hook from manifold-persona (chapter 13). On the 7B it reduces to the additive hook in another unit, because accepting and rejecting answers differ in mean and not in spread. An IH direction induced by the IH prompt and read without it (chapter 14) reproduces the block-18 grid within noise.

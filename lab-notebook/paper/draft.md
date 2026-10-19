@@ -287,6 +287,36 @@ follows IH as in the 3B (+0.8 per point of IH at (0, 8), +1.4 at (8, 8)). In the
 then, the same two directions are found and each is steerable, but the low-IB, medium-IH
 positions that most human groups occupy are not points of the block-18 plane.
 
+The IH direction of the 7B rests on 58 accepting answers, so the band could be a property
+of a poorly estimated direction rather than of the model. To test this, the 7B answered
+the 20 IH train statements under the IH system prompt of Section 3 (ten repetitions, four
+wordings, 800 answers), of which the judge rated 395 as accepting. Every answer, prompted
+and unprompted, was re-encoded with no system prompt, the frame in which steering acts,
+and v_IH was recomputed as the mean of all accepting answers (453) minus all rejecting
+ones (1,093). The new v_IH has cosine 0.69 with the old one and a norm 14% larger. Table
+5b gives the block-18 grid with a and b in {−4, −2, 0, 2, 4} under both directions at the
+same cells.
+
+**Table 5b.** Qwen2.5-7B-Instruct, block 18, the same settings under the original v_IH
+(58 accepting answers) and the induced v_IH (453); scales on the 54 test statements, three
+repetitions; controls one repetition.
+
+| (a, b) | IB orig. / induced | IH orig. / induced | neutral | harm, no benefit orig. / induced | kindness |
+|---|---|---|---|---|---|
+| (0, 0) | 4.80 / 4.83 | 2.31 / 2.44 | 4.40 / 4.40 | 1.08 / 1.05 | 6.36 / 6.40 |
+| (0, 4) | 5.13 / 5.16 | 4.01 / 4.16 | 4.58 / 4.72 | 1.56 / 1.42 | 6.06 / 6.24 |
+| (0, −4) | 4.24 / 4.57 | 1.51 / 1.42 | 3.95 / 4.12 | 1.09 / 1.02 | 6.40 / 6.54 |
+| (4, 4) | 5.31 / 5.52 | 4.69 / 5.02 | 4.92 / 4.95 | 1.88 / 2.55 | 6.20 / 6.22 |
+| (−4, 4) | 4.53 / 4.51 | 3.02 / 3.13 | 4.22 / 4.35 | 1.34 / 1.31 | 5.92 / 5.95 |
+| (−4, −4) | 3.60 / 3.52 | 1.22 / 1.19 | 3.65 / 3.60 | 1.06 / 1.01 | 6.50 / 6.34 |
+
+Over the 24 steered settings the mean difference between the two grids is 0.07 on IB and
+0.05 on IH, with the unsteered cell itself differing by 0.13 on IH between the two runs;
+the closest setting to the lay population is 0.88 group standard deviations away against
+0.91. Eight times the accepting answers change the direction (cosine 0.69) and leave the
+reachable band where it was, so the band is a property of the model at this block, not of
+the estimate of v_IH.
+
 ### 4.5 Where models start, and whether the nearer ones arrive
 
 The 3B started 1.6 points from the lay population and reached it with a = −8; the 7B
@@ -401,9 +431,10 @@ groups, and the strengths that would reach them break the controls. Of fifteen m
 placed unsteered, all sit above and left of the human cluster; the three usable models
 among the four nearest reach the lay population inside the first grid, Gemma-2-2B with a
 plane that covers every human group and a flat harm control, but each at the cost of one
-point of kindness. Whether a direction built at another block or from a balanced contrast
-widens the 7B's plane, and whether a setting exists in the small models that reaches the
-lay population with kindness intact, are the next questions.
+point of kindness. A balanced IH contrast, induced by the prompt and read without it,
+leaves the 7B's band where it was (Table 5b). Whether an edit other than a fixed vector
+widens that band, and whether a setting exists in the small models that reaches the lay
+population with kindness intact, are the next questions.
 
 For deployed agents the result cuts both ways. Agents act on moral criteria whether or not
 anyone set them, and recent incidents in which agents pursued their goals against their

@@ -15,7 +15,10 @@ def load(name, dtype="fp16"):
     tok.padding_side = "left"
     if tok.pad_token is None:
         tok.pad_token = tok.eos_token
-    model = AutoModelForCausalLM.from_pretrained(name, dtype=dt).to(dev).eval()
+    if dev == "cuda" and torch.cuda.device_count() > 1:
+        model = AutoModelForCausalLM.from_pretrained(name, dtype=dt, device_map="auto").eval()
+    else:
+        model = AutoModelForCausalLM.from_pretrained(name, dtype=dt).to(dev).eval()
     return model, tok
 
 

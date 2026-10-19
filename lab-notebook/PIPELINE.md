@@ -42,7 +42,10 @@ scripts/directions_resp.py --model M --responses '$W/base_train/*.jsonl' --judge
 ```
 Per axis: mean response-token activation (every block output) of the train answers rated
 5 to 7 minus those rated 1 to 3. Keys `IBacc|v`, `IHacc|v` (36 x d), `*|mu`.
-`geometry.json` reports norms and cos(IBacc, IHacc).
+`geometry.json` reports norms and cos(IBacc, IHacc). Answers generated under an axis
+prompt (`--cells base,prompt|IH`, two `--responses` and two `--judge` paths) are
+re-encoded with no axis prompt and pooled into the same contrast; on the 7B this gave
+453 instead of 58 accepting IH answers and the same grid (chapter 14).
 
 ## 4. Steer and answer (test statements and controls)
 

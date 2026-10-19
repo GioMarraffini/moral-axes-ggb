@@ -1,0 +1,114 @@
+[
+{
+"kind": "steer2",
+"terms": [
+{
+"axis": "IBacc",
+"layer": 18,
+"s": 5.2
+},
+{
+"axis": "IHacc",
+"layer": 18,
+"s": 4.4
+}
+],
+"target": "act_utilitarianism"
+},
+{
+"kind": "steer2",
+"terms": [
+{
+"axis": "IBacc",
+"layer": 18,
+"s": -4.6
+},
+{
+"axis": "IHacc",
+"layer": 18,
+"s": 9.0
+}
+],
+"target": "rule_utilitarianism"
+},
+{
+"kind": "steer2",
+"terms": [
+{
+"axis": "IBacc",
+"layer": 18,
+"s": -7.5
+},
+{
+"axis": "IHacc",
+"layer": 18,
+"s": 9.8
+}
+],
+"target": "non_utilitarian_consequentialism"
+},
+{
+"kind": "steer2",
+"terms": [
+{
+"axis": "IBacc",
+"layer": 18,
+"s": -12.0
+},
+{
+"axis": "IHacc",
+"layer": 18,
+"s": 9.7
+}
+],
+"target": "virtue_ethics"
+},
+{
+"kind": "steer2",
+"terms": [
+{
+"axis": "IBacc",
+"layer": 18,
+"s": -12.0
+},
+{
+"axis": "IHacc",
+"layer": 18,
+"s": 9.1
+}
+],
+"target": "other_forms_of_deontology"
+},
+{
+"kind": "steer2",
+"terms": [
+{
+"axis": "IBacc",
+"layer": 18,
+"s": -10.6
+},
+{
+"axis": "IHacc",
+"layer": 18,
+"s": 3.0
+}
+],
+"target": "kantian_ethics"
+},
+{
+"kind": "steer2",
+"terms": [
+{
+"axis": "IBacc",
+"layer": 18,
+"s": -10.9
+},
+{
+"axis": "IHacc",
+"layer": 18,
+"s": 8.7
+}
+],
+"target": "lay_population"
+}
+]
