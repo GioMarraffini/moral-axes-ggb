@@ -1,0 +1,32 @@
+[
+{
+"kind": "steer2",
+"terms": [
+{
+"axis": "IBaff",
+"layer": 18,
+"s": 2
+},
+{
+"axis": "IHaff",
+"layer": 18,
+"s": -2
+}
+]
+},
+{
+"kind": "steer2",
+"terms": [
+{
+"axis": "IBaff",
+"layer": 18,
+"s": 2
+},
+{
+"axis": "IHaff",
+"layer": 18,
+"s": -1
+}
+]
+}
+]

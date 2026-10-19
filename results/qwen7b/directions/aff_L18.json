@@ -1,0 +1,28 @@
+{
+ "IB acc": {
+  "answers": 739,
+  "tokens": 131200
+ },
+ "IB rej": {
+  "answers": 125,
+  "tokens": 20672
+ },
+ "IH acc": {
+  "answers": 58,
+  "tokens": 12130
+ },
+ "IH rej": {
+  "answers": 721,
+  "tokens": 142059
+ },
+ "pooled tokens": 333466,
+ "IB acc |mu - mu_p|": 5.75718879699707,
+ "IB acc sd ratio median": 0.9919393062591553,
+ "IB rej |mu - mu_p|": 8.383135795593262,
+ "IB rej sd ratio median": 0.9991523027420044,
+ "IH acc |mu - mu_p|": 7.413379192352295,
+ "IH acc sd ratio median": 0.9861180782318115,
+ "IH rej |mu - mu_p|": 6.6543073654174805,
+ "IH rej sd ratio median": 0.9971489906311035,
+ "|mu_p|": 54.4533576965332
+}
