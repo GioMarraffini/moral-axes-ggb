@@ -18,3 +18,9 @@ results/qwen*/grid*/
 !results/survey/
 results/survey/*
 !results/survey/*.csv
+!results/llama1b/
+results/llama1b/base/
+results/llama1b/grid*/
+!results/gemma2b/
+results/gemma2b/base/
+results/gemma2b/grid*/

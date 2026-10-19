@@ -16,8 +16,10 @@ unsteered model. The directions are built on 45 statements and evaluated on 54 h
 ones. Run unchanged on Qwen2.5-7B-Instruct, the pipeline finds the same two near-orthogonal
 directions (cosine 0.12), each moving its scale by 2 to 2.5 points, but the reachable
 region is a curved band that passes above the lay and deontological groups and the
-settings that would reach them disturb the controls. We release the pipeline, which
-depends on the model only through its hidden states.
+settings that would reach them disturb the controls. Fifteen models placed unsteered all
+sit above and left of the human cluster; of the four nearest, three reach the lay
+population with strengths of 4 or less, each one point less kind on neutral statements.
+We release the pipeline, which depends on the model only through its hidden states.
 
 ## 1. Introduction
 
@@ -41,7 +43,9 @@ protocol and report three findings.
    seven within one group standard deviation, and the lay population is reached with
    statistical equivalence (Section 4.3). The pipeline uses nothing but hidden states and a
    rating judge; on Qwen2.5-7B-Instruct it finds the same two directions but reaches one
-   group (Section 4.4).
+   group (Section 4.4). Of fifteen models placed unsteered, the three usable models among
+   the four nearest the lay population reach it inside the first grid, at the cost of one
+   point of kindness (Section 4.5).
 
 ## 2. Related work
 
@@ -283,6 +287,105 @@ follows IH as in the 3B (+0.8 per point of IH at (0, 8), +1.4 at (8, 8)). In the
 then, the same two directions are found and each is steerable, but the low-IB, medium-IH
 positions that most human groups occupy are not points of the block-18 plane.
 
+### 4.5 Where models start, and whether the nearer ones arrive
+
+The 3B started 1.6 points from the lay population and reached it with a = −8; the 7B
+started 1.5 points away and did not. Whether the pipeline's reach depends on where a model
+starts can only be tested on models that start elsewhere. Fifteen open instruction-tuned
+models of 0.5B to 14B parameters from six families were placed unsteered with a reduced
+protocol: the 54 test statements, five repetitions, the three controls once, each model
+answering through its own chat template with no system prompt (the Qwen models keep their
+default one). Table 6 gives their positions and the distance to the lay population.
+
+**Table 6.** Unsteered position of fifteen models, test statements, five repetitions;
+controls one repetition. Distance is Euclidean in the (IB, IH) plane to the lay population
+(3.65, 3.31).
+
+| model | IB | IH | neutral | harm, no benefit | kindness | distance to lay |
+|---|---|---|---|---|---|---|
+| Llama-3.2-1B | 3.71 | 2.29 | 3.52 | 1.58 | 5.28 | 1.02 |
+| Gemma-2-2B | 4.24 | 2.46 | 3.80 | 2.35 | 6.01 | 1.03 |
+| Qwen2.5-1.5B | 4.74 | 3.10 | 4.33 | 2.14 | 5.99 | 1.11 |
+| Qwen2.5-0.5B | 4.50 | 4.08 | 4.67 | 3.50 | 4.93 | 1.15 |
+| OLMo-2-13B | 4.62 | 2.47 | 4.45 | 1.00 | 6.60 | 1.29 |
+| OLMo-2-1B | 4.94 | 3.51 | 5.72 | 1.90 | 5.65 | 1.30 |
+| OLMo-2-7B | 4.37 | 2.18 | 4.55 | 1.06 | 6.19 | 1.34 |
+| Llama-3.1-8B | 4.81 | 2.45 | 4.53 | 1.08 | 6.49 | 1.45 |
+| Qwen2.5-7B | 4.84 | 2.41 | 4.35 | 1.06 | 6.35 | 1.49 |
+| Qwen2.5-14B | 4.53 | 2.03 | 4.47 | 1.00 | 6.71 | 1.55 |
+| Gemma-2-9B | 3.92 | 1.73 | 4.40 | 1.00 | 6.49 | 1.60 |
+| Qwen2.5-3B | 5.23 | 2.87 | 4.53 | 1.55 | 6.31 | 1.64 |
+| Phi-4-mini | 4.36 | 1.63 | 4.53 | 1.20 | 6.79 | 1.82 |
+| SmolLM2-1.7B | 5.36 | 4.41 | 5.68 | 3.12 | 5.76 | 2.03 |
+| Llama-3.2-3B | 4.54 | 1.48 | 3.95 | 1.65 | 6.14 | 2.04 |
+| Mistral-7B-v0.3 | 5.50 | 1.44 | 4.30 | 1.00 | 7.00 | 2.63 |
+
+Every model sits above and to the left of the human cluster, one point away at the
+nearest. Every model of 7B or more has IH between 1.4 and 2.5 with the pointless-harm
+control at 1.0 to 1.1; the models nearer the lay population are small, and their harm
+control is higher (Qwen2.5-0.5B 3.5, SmolLM2 3.1), so part of their closeness is a weaker
+rejection of harm of any kind.
+
+The pipeline of Section 3 was then run unchanged on the four nearest models, with the
+first-round grid only (a, b in {−4, −2, 0, 2, 4}, three blocks at 50%, 64% and 75% of
+depth, three repetitions, controls once) and the equivalence test of Section 4.3. Table 7
+gives, for each model at the block kept by the Section 3 rule, the four single-direction
+settings at strength 4 and the setting that passes the equivalence test for the lay
+population; Figure 5 shows the Gemma-2-2B grid.
+
+**Table 7.** Four models, first-round grid at the kept block; scales on the 54 test
+statements, three repetitions; controls one repetition. Last column: the group reached by
+the equivalence test and its distance in group standard deviations. Direction contrasts
+(accepting / rejecting train answers): Llama-3.2-1B IB 420 / 523, IH 86 / 672; Gemma-2-2B
+380 / 382, 25 / 697; Qwen2.5-1.5B 497 / 123, 86 / 330; Qwen2.5-0.5B 492 / 179, 286 / 182.
+
+| model, block, cos(v_IB, v_IH) | (a, b) | IB | IH | neutral | harm, no benefit | kindness | reached (d) |
+|---|---|---|---|---|---|---|---|
+| Gemma-2-2B, 13, 0.22 | (0, 0) | 4.31 | 2.39 | 3.80 | 2.36 | 6.01 | |
+| | (4, 0) | 6.90 | 5.86 | 6.15 | 1.46 | 6.48 | |
+| | (−4, 0) | 3.17 | 2.53 | 3.15 | 2.64 | 4.24 | |
+| | (0, 4) | 5.23 | 4.23 | 4.70 | 2.16 | 5.78 | |
+| | (0, −4) | 2.59 | 1.43 | 3.22 | 2.28 | 5.84 | |
+| | (−4, 2) | 3.73 | 3.03 | 3.45 | 2.44 | 4.90 | lay population (0.29) |
+| Llama-3.2-1B, 10, 0.38 | (0, 0) | 3.85 | 2.31 | 3.35 | 1.76 | 4.91 | |
+| | (4, 0) | 5.81 | 3.49 | 5.82 | 2.54 | 6.22 | |
+| | (−4, 0) | 3.19 | 2.50 | 3.45 | 1.76 | 4.60 | |
+| | (0, 4) | 4.64 | 3.95 | 4.82 | 2.91 | 5.14 | |
+| | (0, −4) | 2.74 | 1.45 | 3.10 | 1.34 | 4.71 | |
+| | (−4, −4) | 3.74 | 3.18 | 4.12 | 2.00 | 4.54 | lay population (0.15) |
+| Qwen2.5-1.5B, 18, 0.17 | (0, 0) | 4.83 | 3.08 | 4.66 | 2.15 | 5.75 | |
+| | (4, 0) | 6.11 | 4.84 | 5.88 | 2.91 | 6.39 | |
+| | (−4, 0) | 3.37 | 3.10 | 3.67 | 2.62 | 4.43 | |
+| | (0, 4) | 5.32 | 4.72 | 4.80 | 3.56 | 5.70 | |
+| | (0, −4) | 3.73 | 3.01 | 3.81 | 3.07 | 4.29 | |
+| | (−4, 2) | 3.84 | 3.32 | 4.00 | 2.69 | 4.63 | lay population (0.19) |
+| Qwen2.5-0.5B, 12, 0.71 | (0, 0) | 4.56 | 3.97 | 4.68 | 3.53 | 4.95 | |
+| | (4, 0) | 6.45 | 6.36 | 6.38 | 5.51 | 6.40 | |
+| | (−4, 0) | 3.01 | 3.04 | 3.50 | 2.38 | 2.74 | |
+| | (0, 4) | 6.20 | 6.11 | 5.95 | 5.18 | 5.94 | |
+| | (0, −4) | 2.87 | 3.15 | 3.10 | 2.18 | 2.74 | |
+| | (−4, −2) | 3.39 | 3.45 | 3.42 | 2.89 | 3.06 | lay population (0.30) |
+
+![Figure 5](../figures/12_gemma2b_L13.png)
+
+*Figure 5. Gemma-2-2B, the 25 block-13 settings in the (IB, IH) plane, lines joining
+equal a or b; star: unsteered; squares: human groups. Left, colour is a; right, colour is
+the largest shift of a control set from unsteered.*
+
+All four models pass the equivalence test for the lay population inside the first grid,
+at strengths of 4 or less, where no setting of the 7B's two grids did. In Gemma-2-2B the
+grid is a regular fan that covers the human cluster (IB 2.6 to 6.9, IH 1.4 to 6.6), each
+direction moves its own scale with the right sign on both sides, and the pointless-harm
+control stays between 1.5 and 2.9 over the 25 settings. The three usable models pay the
+same price at the lay setting: kindness one point below unsteered (Gemma 4.90 against
+6.01, Llama 4.54 against 4.91, Qwen 1.5B 4.63 against 5.75), where the 3B paid 0.3 (Table
+3), and a neutral control that moves by 0.35 to 0.8. Qwen2.5-0.5B is the limiting case
+the test does not guard against: its two directions have cosine 0.71, every setting moves
+all five sets by the same amount, and its pass is a shift of every score toward 3, where
+the lay population sits. Qwen2.5-1.5B leaves 17% of its grid answers unfinished and
+unrated. A model's distance from the lay population thus predicts whether the first grid
+reaches it, but not whether the controls hold.
+
 ## 5. Conclusion
 
 A model's position on the two utilitarian scales is not fixed. Two directions, read off the
@@ -294,9 +397,13 @@ of harm without benefit as well, so a target that requires high IH is reached at
 of a control. The 7B model of the same family does not separate the two either, and
 adds a second limit: its two directions are found and each moves its scale, but the
 region they span is a band that misses the low-IB, medium-IH positions of most human
-groups, and the strengths that would reach them break the controls. Which models have a
-plane that covers the human positions, and whether a direction built at another block or
-from a balanced contrast widens the 7B's, are the next questions.
+groups, and the strengths that would reach them break the controls. Of fifteen models
+placed unsteered, all sit above and left of the human cluster; the three usable models
+among the four nearest reach the lay population inside the first grid, Gemma-2-2B with a
+plane that covers every human group and a flat harm control, but each at the cost of one
+point of kindness. Whether a direction built at another block or from a balanced contrast
+widens the 7B's plane, and whether a setting exists in the small models that reaches the
+lay population with kindness intact, are the next questions.
 
 For deployed agents the result cuts both ways. Agents act on moral criteria whether or not
 anyone set them, and recent incidents in which agents pursued their goals against their

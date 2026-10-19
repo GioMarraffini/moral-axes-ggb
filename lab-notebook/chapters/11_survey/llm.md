@@ -16,7 +16,8 @@ minutes). Per model: `generate.py --cells base --split test --types IB,IH --iter
 (200, `ctrl.jsonl`), `judge_chunks.py` + `judge.py` (`judge/`). Gated models need
 `/root/.hf_token` (the second token in `PhD-home/.env`; the first is refused by Llama and
 Gemma). `mistral7b` failed with a corrupted `tokenizer.model` download (consistency
-check); its cache directory is deleted and the survey rerun at the end of the queue.
+check); its cache directory was deleted and the survey rerun at the end of the chapter-12
+queue (October 17, 0 unrated).
 
 Tags and models: qwen05 Qwen/Qwen2.5-0.5B-Instruct, qwen15 1.5B, qwen14b 14B, olmo1b
 allenai/OLMo-2-0425-1B-Instruct, olmo7b OLMo-2-1124-7B-Instruct, olmo13b
@@ -32,7 +33,8 @@ results/judge_final --extra qwen3b 'results/final_ctrl/*.jsonl' results/judge_re
 the rated answers (rating > 0), then mean over statements of the type, test split, four
 kept wordings. Distances are Euclidean in the plane to the lay population (3.65, 3.31)
 and to the centre of the seven groups (4.03, 3.91). Unrated answers: qwen15 189 of
-1,280, qwen05 58, smol17 11, llama3b 4, all others 0.
+1,280, qwen05 58, smol17 11, llama3b 4, all others 0. Mistral-7B-v0.3: IB 5.50, IH 1.44,
+neutral 4.30, harm 1.00, kindness 7.00, distance to lay 2.63.
 
 Queue: `cluster/h100_queue.sh llama1b gemma2b qwen05 qwen15` (log `after_survey.log`,
 per-model `pipeline_<tag>.log`): for each tag, grid layers at 0.5, 0.64, 0.75 of the

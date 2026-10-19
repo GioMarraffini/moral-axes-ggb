@@ -10,13 +10,13 @@ with the unchanged pipeline. The first step is to know where many models start.
 
 ## What was done
 
-Fourteen open instruction-tuned models from 0.5B to 14B parameters, five families, placed
+Fifteen open instruction-tuned models from 0.5B to 14B parameters, six families, placed
 with the reduced protocol: the 54 test statements, the four kept wordings, five
 chain-of-thought answers each (1,080 scale answers per model), the three control sets
 once (200), the 14B judge. Each model answers through its own chat template with no system
 prompt; the Qwen models keep their default one, so the 3B and 7B rows are the base runs of
-chapters 8 and 10. Mistral-7B-Instruct failed on a corrupted tokenizer download and is
-being rerun.
+chapters 8 and 10. Mistral-7B-Instruct-v0.3 failed on a corrupted tokenizer download and
+was rerun after the chapter-12 queue.
 
 ## Result
 
@@ -42,11 +42,13 @@ centre.*
 | Phi-4-mini | 4.36 | 1.63 | 4.53 | 1.20 | 6.79 | 1.82 | Kantian (1.53) |
 | SmolLM2-1.7B | 5.36 | 4.41 | 5.68 | 3.12 | 5.76 | 2.03 | rule util. (0.71) |
 | Llama-3.2-3B | 4.54 | 1.48 | 3.95 | 1.65 | 6.14 | 2.04 | Kantian (1.74) |
+| Mistral-7B-v0.3 | 5.50 | 1.44 | 4.30 | 1.00 | 7.00 | 2.63 | lay (2.63) |
 
 - **Every model sits above and to the left of the human cluster.** IB runs from 3.7 to
-  5.4 and IH from 1.5 to 4.4; no model is below IB 3.7, where the lay population, virtue
-  ethics and deontology sit. The nearest is one point away.
-- **Size pushes IH down.** All models of 7B and more sit at IH 1.7 to 2.5 with the
+  5.5 and IH from 1.4 to 4.4; no model is below IB 3.7, where the lay population, virtue
+  ethics and deontology sit. The nearest is one point away; Mistral-7B is the farthest,
+  with the highest IB, the lowest IH and kindness at the ceiling.
+- **Size pushes IH down.** All models of 7B and more sit at IH 1.4 to 2.5 with the
   pointless-harm control at 1.0 to 1.1: they reject harm firmly in both cases. The models
   with higher IH are small (Qwen 0.5B 4.1, SmolLM2 4.4, OLMo 1B 3.5, Qwen 1.5B 3.1), and
   their pointless-harm control rises with it (3.5, 3.1, 1.9, 2.1). Closeness to the human
@@ -63,4 +65,4 @@ centre.*
 The unchanged first-round pipeline (ten unprompted iterations, directions, 5 x 5 grid at
 three depths, controls) on the four models nearest the lay population: Llama-3.2-1B,
 Gemma-2-2B, Qwen2.5-0.5B, Qwen2.5-1.5B. The hypothesis predicts that a strength that left
-the 7B short reaches the lay population in these, with the controls intact.
+the 7B short reaches the lay population in these, with the controls intact. Chapter 12.

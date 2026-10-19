@@ -56,10 +56,15 @@ scripts/generate.py ... --types neutral,harm_no_benefit,kindness --iterations 3 
 Then step 2 on both outputs. Layer: the first run sweeps L in {0.5, 0.65, 0.75} of depth
 with a 3-iteration grid a, b in {−4, −2, 0, 2, 4}; the layer is the one whose single-axis
 cells move their own scale most with the smallest control shift (3B: 23 of 36; 7B: 18
-of 28). A second round at that layer widens the strengths until the groups are inside
-the grid (3B: a to −10, b to 8; 7B: a to −10, b to 8). On one H100 the whole chain is
-`cluster/h100_next_model.sh MODEL TAG grid_cells.json` (steps 1 to 4, first round) and
-`cluster/h100_grid.sh MODEL TAG cells.json SUBDIR` (any further grid).
+of 28; Llama 1B: 10 of 16; Gemma 2B: 13 of 26; Qwen 1.5B: 18 of 28). A second round at
+that layer widens the strengths until the groups are inside the grid (3B: a to −10, b to
+8; 7B: a to −10, b to 8); models that start within one point of the lay population reach
+it inside the first grid. On one H100 the whole chain is `cluster/h100_next_model.sh MODEL
+TAG grid_cells.json` (steps 1 to 4, first round; `scripts/grid_cells.py --layers` writes
+the cells), `cluster/h100_queue.sh TAG...` runs it on several models in turn, and
+`cluster/h100_grid.sh MODEL TAG cells.json SUBDIR` runs any further grid. A match is
+reported with its three controls and within-statement s.d.: a model whose five sets all
+move together (Qwen 0.5B) passes the equivalence test on a global shift.
 
 ## 5. Place the model
 
