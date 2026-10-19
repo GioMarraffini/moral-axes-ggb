@@ -29,11 +29,11 @@ def abl(c):
     a = b = 0.0
     L = None
     for part in c.split("+"):
-        if "acc" in part:
+        if "|L" in part:
             L = int(part.split("|L")[1].split("|")[0])
-        if "IBacc" in part:
+        if "IBacc" in part or "IBaff" in part:
             a = float(part.split("|")[-1])
-        if "IHacc" in part:
+        if "IHacc" in part or "IHaff" in part:
             b = float(part.split("|")[-1])
     return a, b, L
 

@@ -112,3 +112,28 @@ def response_means(model, tok, prompts, responses, bs=4):
         w = (sel / sel.sum(1, keepdim=True)).unsqueeze(-1)
         out.append(torch.stack([(h.float() * w).sum(1) for h in hs[1:]], 1).cpu())
     return torch.cat(out)
+
+
+@torch.no_grad()
+def response_token_stats(model, tok, prompts, responses, L, bs=4):
+    """Per answer: token count, sum and sum of squares of the layer-L state over the response tokens."""
+    dev = model.device
+    cnt, s1, s2 = [], [], []
+    for b in range(0, len(prompts), bs):
+        pid = [tok(p, add_special_tokens=False)["input_ids"] for p in prompts[b:b + bs]]
+        rid = [tok(r, add_special_tokens=False)["input_ids"] for r in responses[b:b + bs]]
+        n = max(len(p) + len(r) for p, r in zip(pid, rid))
+        ids = torch.full((len(pid), n), tok.pad_token_id, device=dev)
+        mask = torch.zeros_like(ids)
+        sel = torch.zeros_like(ids, dtype=torch.float32)
+        for r, (p, a) in enumerate(zip(pid, rid)):
+            s = p + a
+            ids[r, n - len(s):] = torch.tensor(s, device=dev)
+            mask[r, n - len(s):] = 1
+            sel[r, n - len(a):] = 1
+        h = model(input_ids=ids, attention_mask=mask, output_hidden_states=True).hidden_states[L + 1].double()
+        w = sel.double().unsqueeze(-1)
+        cnt.append(sel.sum(1).cpu())
+        s1.append((h * w).sum(1).cpu())
+        s2.append((h * h * w).sum(1).cpu())
+    return torch.cat(cnt), torch.cat(s1), torch.cat(s2)

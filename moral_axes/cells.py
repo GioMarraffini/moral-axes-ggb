@@ -2,6 +2,9 @@
 
 add: h + s * v, with v the prompted mean minus the baseline mean of response activations.
 pin: the projection of h on v / |v| is set to the baseline projection plus s * |v|.
+aff: h + |s| * (mu_t - mu_p + (sd_t / sd_p - 1) * (h - mu_p)), with t the accepting answers
+of the axis for s > 0 and the rejecting answers for s < 0, and p all rated answers; at
+|s| = 1 the token mean and the per-dimension spread match the target answers'.
 """
 import json
 
@@ -95,7 +98,8 @@ def hooks(c, Z, dev):
     if c["kind"] == "steer2":
         fns = {}
         for t in c["terms"]:
-            f = hooks({"kind": "steer", "mode": "add", **t}, Z, dev)[t["layer"]]
+            mode = "aff" if t["axis"].endswith("aff") else "add"
+            f = hooks({"kind": "steer", "mode": mode, **t}, Z, dev)[t["layer"]]
             g = fns.get(t["layer"])
             fns[t["layer"]] = (lambda h, f=f, g=g: f(h) + g(h) - h) if g else f
         return fns
@@ -107,6 +111,13 @@ def hooks(c, Z, dev):
         r = np.random.default_rng(L).standard_normal(Z["IB|v"].shape[1])
         v = t(r / np.linalg.norm(r) * np.linalg.norm(Z["IB|v"][L]))
         return {L: lambda h: h + s * v}
+    if c["mode"] == "aff":
+        k, grp, m, clip = f"{c['axis']}|L{L}", "acc" if s >= 0 else "rej", abs(s), c.get("clip", 3.0)
+        mu_p, sd_p = Z[f"aff|L{L}|mu_p"], Z[f"aff|L{L}|sd_p"]
+        shift = t(Z[f"{k}|mu_{grp}"] - mu_p)
+        gain = t(np.clip(Z[f"{k}|sd_{grp}"] / sd_p, 1 / clip, clip) - 1)
+        mu_p = t(mu_p)
+        return {L: lambda h: h + m * (shift + gain * (h - mu_p))}
     v, mu = direction(c["axis"], Z, L)
     d = float(np.linalg.norm(v))
     if c["mode"] == "add":

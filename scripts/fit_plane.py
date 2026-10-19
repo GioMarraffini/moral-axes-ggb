@@ -31,9 +31,9 @@ def strengths(c):
     a = b = 0.0
     terms = c.get("terms") or ([{"axis": c["axis"], "s": c["s"]}] if c["kind"] == "steer" else [])
     for t in terms:
-        if t["axis"] == "IBacc":
+        if t["axis"] in ("IBacc", "IBaff"):
             a = t["s"]
-        if t["axis"] == "IHacc":
+        if t["axis"] in ("IHacc", "IHaff"):
             b = t["s"]
     return a, b
 
